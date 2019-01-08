@@ -1,0 +1,26 @@
+<ion-header>
+  <ion-navbar color="primary">
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title>SHAADI</ion-title>
+  </ion-navbar>
+</ion-header> 
+
+
+<ion-content>
+  <div padding *ngFor="let m of matrimonialData">
+    <h4 ion-text color="dark">{{m.matrimonialTitle}}</h4>
+
+    <ion-row>
+      <ion-col>
+        <ion-icon name="calendar">&nbsp;{{m.matrimonialDate}}&nbsp;</ion-icon>
+      </ion-col>
+    </ion-row>
+
+    <p [innerHtml]="m.matrimonialDesc"></p>
+
+  </div>
+
+</ion-content>
+

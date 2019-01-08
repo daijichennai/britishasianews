@@ -1,0 +1,22 @@
+<ion-header>
+  <ion-navbar color="primary">
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title>SHAADI</ion-title>
+
+  </ion-navbar>
+</ion-header>
+
+
+<ion-content>
+  <ion-list>
+    <ion-item *ngFor="let m of listOfMatrimonial">
+      <h2 text-wrap (click)="getMatrimonialID(m.matrimonialID)">{{m.matrimonialTitle}}</h2>
+      <h2 text-wrap></h2>
+      <ion-icon style="font-size: 1em" name="md-clock">&nbsp;{{m.matrimonialDate}}&nbsp;</ion-icon>
+      <!-- <ion-icon style="font-size: 1em" name="calendar">&nbsp;{{m.matrimonialAge}}&nbsp;</ion-icon> -->
+    </ion-item>
+  </ion-list>
+
+</ion-content>

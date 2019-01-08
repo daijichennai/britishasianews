@@ -1,0 +1,7 @@
+{
+  "name": "britasianewsV3",
+  "integrations": {
+    "cordova": {}
+  },
+  "type": "ionic-angular"
+}

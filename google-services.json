@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "463825766383",
+    "firebase_url": "https://britasianews-e6f1e.firebaseio.com",
+    "project_id": "britasianews-e6f1e",
+    "storage_bucket": "britasianews-e6f1e.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:463825766383:android:05cf7b1fead1c0b8",
+        "android_client_info": {
+          "package_name": "com.britasianews.android"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "463825766383-4iijhkg1h834vg91o0qrns9bum527vi5.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAmk-zHn4syneU59owXvKuFcEWBJVjDWkk"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

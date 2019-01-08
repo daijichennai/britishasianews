@@ -1,0 +1,133 @@
+<ion-header>
+  <ion-navbar color="primary" >
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title>Display News</ion-title>
+     <ion-buttons end>
+        <button ion-button icon-only color="royal" (click)="emailComment()">
+            <ion-icon name="text"  ></ion-icon>
+          </button>
+      <button ion-button icon-only color="royal" (click)="shareNews()">
+        <ion-icon name="share"  ></ion-icon>
+      </button>
+    </ion-buttons>
+  </ion-navbar>
+</ion-header>
+
+
+<ion-content>
+<div padding *ngFor="let i of singleNewsData" style="padding-bottom: 0px;border-bottom: 1px solid #c0c0c0" >
+   <h4  ion-text color="dark">{{i.newsTitle}}</h4> 
+
+   <ion-row>
+      <ion-col>
+            <ion-icon name="calendar" >&nbsp;<span class="comment-Date">{{i.newsDate}}</span>&nbsp;</ion-icon>
+            <ion-icon name="text">&nbsp;<span class="comment-Date">{{i.activecomments}}</span></ion-icon>
+      </ion-col>
+    </ion-row> 
+
+  <p [innerHtml]="i.newsDescription"></p>
+<!-- <ion-item-divider ></ion-item-divider> -->
+</div>
+
+<div *ngIf="hideShow" >
+<h4 style="padding-left: 15px" >Comments on this article</h4>
+
+<!-- <ion-card *ngFor="let ec of newsCommentsData" class="{{commentsLevel(ec.ecDotsLevel)}}"> 
+    
+    <ion-item>
+        <h2>{{ec.ecUserName}}</h2>
+        <p>{{ec.ecDate}}</p>
+    </ion-item>
+    
+
+    <ion-card-content>
+      <p>{{ec.ecComments}}</p>
+    </ion-card-content>
+  
+    <ion-row>
+        <ion-col text-center >
+            <button ion-button color="primary" small (click)="replyFn('reportAbuse',ec.ecID)">
+              <div>Report Abuse</div>
+            </button>
+          
+            <button ion-button color="info" small (click)="replyFn('reply',ec.ecID)" >
+              <ion-icon name="ios-undo"></ion-icon>
+              <div>&nbsp;Reply</div>
+            </button>
+         
+        <button ion-button color="orange" small>
+          <ion-icon name="thumbs-up" (click)="agreeDisAgreeFn(1,ec.ecID)" id="upAgreeValue{{ec.ecID}}" >
+              &nbsp;{{ec.agree}}
+          </ion-icon> 
+        </button>
+       
+        <button ion-button color="danger" small>
+          <ion-icon name="thumbs-down" (click)="agreeDisAgreeFn(2,ec.ecID)"  id="upDisagreeValue{{ec.ecID}}" >
+              &nbsp;{{ec.disagree}}
+          </ion-icon>
+        </button>
+      </ion-col>
+
+      <ion-item-divider></ion-item-divider>
+    </ion-row>
+  
+  </ion-card> --> 
+  <div class="comments-container" *ngFor="let ec of newsCommentsData">
+    <ul style="list-style: none;" class="{{commentsLevel(ec.ecDotsLevel)}}">
+      <li>
+        <div class="comment-main-level">
+          <div class="comment-box">
+            <div class="comment-head"  class="{{chkSubLvlBgColor(ec.ecDotsLevel)}}">
+              <h6 class="comment-name">
+                &nbsp; {{ec.ecUserName}}
+              </h6>
+              <div class="comment-Date" style="padding-top:16px;">
+               &nbsp;  {{ec.ecDate}}
+              </div>
+  
+            </div>
+            <div class="comment-content">
+              <p>{{ec.ecComments}}</p>
+              <!--This is for Reply & Report Abuse button-->
+              <ion-row>
+                <ion-col text-center>
+                  <button ion-button color="primary" small (click)="replyFn('reportAbuse',ec.ecID)">
+                    <div>Report Abuse</div>
+                  </button>
+              
+                  <button ion-button color="info" small (click)="replyFn('reply',ec.ecID)">
+                    <ion-icon name="ios-undo"></ion-icon>
+                    <div>&nbsp;Reply</div>
+                  </button>
+              
+                  <button ion-button color="orange" small>
+                    <ion-icon name="thumbs-up" (click)="agreeDisAgreeFn(1,ec.ecID)" id="upAgreeValue{{ec.ecID}}">
+                      &nbsp;{{ec.agree}}
+                    </ion-icon>
+                  </button>
+              
+                  <button ion-button color="danger" small>
+                    <ion-icon name="thumbs-down" (click)="agreeDisAgreeFn(2,ec.ecID)" id="upDisagreeValue{{ec.ecID}}">
+                      &nbsp;{{ec.disagree}}
+                    </ion-icon>
+                  </button>
+                </ion-col> 
+              </ion-row>
+            </div>
+          </div>
+        </div>
+      </li>
+    </ul>
+</div>
+
+</div>  
+
+<br/>
+<div style="text-align:center"> Copyright  &copy; {{myDate | date:'yyyy'}} Britasianews.com </div>
+<br>
+</ion-content>
+
+
+
