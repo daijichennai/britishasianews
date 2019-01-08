@@ -31,6 +31,13 @@
         </ion-item><br/>
         <div class="error-box" *ngIf="authForm.controls['ecUserName'].hasError('required') && authForm.controls['ecUserName'].touched">* User Name is required!</div>
         
+
+        <ion-item>
+            <ion-label floating>Place</ion-label>
+            <ion-input type="text" [(ngModel)]="userPlace" value="" [formControl]="authForm.controls['ecUserPlace']" [ngClass]="{'error-border':!authForm.controls['ecUserPlace'].valid}"></ion-input>
+        </ion-item><br />
+        <div class="error-box" *ngIf="authForm.controls['ecUserPlace'].hasError('required') && authForm.controls['ecUserPlace'].touched">*
+            Place is required!</div>
         
         <ion-item>
             <ion-label floating>Password</ion-label>

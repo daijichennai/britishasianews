@@ -19,10 +19,13 @@ export class CommentsPage {
   public replyMode : string;  //reply or reportAbuse
   public userEmail :string;
   public userName : string;
+  public userPlace : string;
   public userComments : string;
   public userPassword : string;
   public userComfirmPwd :string;
+  public confirmPassword: string;
   public lsEcUserName : string;
+  public lsEcUserPlace : string;
   public lsEcUserEmail : string;
   public lsEcUserPwd :string;
   public hideShow :boolean = false;
@@ -59,6 +62,7 @@ export class CommentsPage {
 
       this.authForm = fb.group({
           'ecUserName' : [null, Validators.compose([Validators.required])],
+          'ecUserPlace' : [null, Validators.compose([Validators.required])],
           'ecUserPassword': ['null', Validators.compose([Validators.required, Validators.minLength(8)])],          
           'ecConfirmpassword':['', Validators.compose([Validators.required,this.equalto('ecUserPassword')])],
           'ecUserEmail': ['', Validators.compose([Validators.pattern('^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+.[a-zA-Z0-9-.]+$'), Validators.required])],
@@ -73,6 +77,7 @@ export class CommentsPage {
 
         this.authForm = fb.group({
           'ecUserName' : [null],
+          'ecUserPlace': [null],
           'ecUserPassword':  [null],
           'ecUserEmail': [null],
           'ecComments' :  [null, Validators.compose([Validators.required])]
@@ -80,6 +85,7 @@ export class CommentsPage {
 
         this.lsEcUserEmail = window.localStorage.getItem("ecUserEmailID");
         this.lsEcUserName = window.localStorage.getItem("ecUserName");
+        this.lsEcUserPlace = window.localStorage.getItem("ecUserPlace");
         this.lsEcUserPwd = window.localStorage.getItem("ecUserPassword");
         
       }
@@ -135,13 +141,14 @@ export class CommentsPage {
       if((this.isChkLsEmail)){
         //alert("else -> news user")
         window.localStorage.setItem("ecUserName", this.userName);
+        window.localStorage.setItem("ecUserPlace", this.userPlace);
         window.localStorage.setItem("ecUserEmailID", this.userEmail);
         window.localStorage.setItem("ecUserPassword", this.userPassword);
 
         if(this.replyMode=="reportAbuse"){
           insCommentURL = this.domainName + "handlers/androidEmailComments.ashx?mode=insRptAbuse&ecID=" + this.ecID + " &ecUserName=" + this.userName + "&ecUserEmailID=" + this.userEmail + "&ecComments=" + this.userComments;
         }else{
-          insCommentURL = this.domainName + "handlers/androidEmailComments.ashx?mode=insComment&ecTitle=" + this.strNewsTitle + "&ecUserName=" + this.userName + "&ecUserEmailID=" + this.userEmail + "&ecComments=" + this.userComments + "&parentID=" + this.parentID + "&newsID=" + this.intNewsID + "&newsCategoryID=" + this.intNewsCategoryID + "&ecUserPassword=" + this.userPassword + "&loginMode=email" + "&userType=" + this.userType;
+          insCommentURL = this.domainName + "handlers/androidEmailComments.ashx?mode=insComment&ecTitle=" + this.strNewsTitle + "&ecUserName=" + this.userName + "&ecUserEmailID=" + this.userEmail + "&ecComments=" + this.userComments + "&parentID=" + this.parentID + "&newsID=" + this.intNewsID + "&newsCategoryID=" + this.intNewsCategoryID + "&ecUserPassword=" + this.userPassword + "&loginMode=email" + "&userType=" + this.userType + "&ecUserPlace=" + this.userPlace;
         }
      
       }
@@ -152,7 +159,7 @@ export class CommentsPage {
         if(this.replyMode=="reportAbuse"){
           insCommentURL = this.domainName + "handlers/androidEmailComments.ashx?mode=insRptAbuse&ecID=" + this.ecID + " &ecUserName=" + this.lsEcUserName + "&ecUserEmailID=" + this.lsEcUserEmail + "&ecComments=" + this.userComments;
         }else{
-          insCommentURL = this.domainName + "handlers/androidEmailComments.ashx?mode=insComment&ecTitle=" + this.strNewsTitle + "&ecUserName=" + this.lsEcUserName + "&ecUserEmailID=" + this.lsEcUserEmail + "&ecComments=" + this.userComments + "&parentID=" + this.parentID + "&newsID=" + this.intNewsID + "&newsCategoryID=" + this.intNewsCategoryID + "&ecUserPassword=" + this.lsEcUserPwd + "&loginMode=email" + "&userType=" + this.userType;
+          insCommentURL = this.domainName + "handlers/androidEmailComments.ashx?mode=insComment&ecTitle=" + this.strNewsTitle + "&ecUserName=" + this.lsEcUserName + "&ecUserEmailID=" + this.lsEcUserEmail + "&ecComments=" + this.userComments + "&parentID=" + this.parentID + "&newsID=" + this.intNewsID + "&newsCategoryID=" + this.intNewsCategoryID + "&ecUserPassword=" + this.lsEcUserPwd + "&loginMode=email" + "&userType=" + this.userType + "&ecUserPlace=" + this.lsEcUserPlace;
         
         }
       }

@@ -80,13 +80,12 @@
         <div class="comment-main-level">
           <div class="comment-box">
             <div class="comment-head"  class="{{chkSubLvlBgColor(ec.ecDotsLevel)}}">
-              <h6 class="comment-name">
-                &nbsp; {{ec.ecUserName}}
-              </h6>
-              <div class="comment-Date" style="padding-top:16px;">
-               &nbsp;  {{ec.ecDate}}
-              </div>
-  
+              <div class="card-header" style="padding-top:10px;padding-left:10px;">
+                <div class="commentName" style="font-size:12px;line-height: 1.5em;">
+                  {{ec.ecUserName}},&nbsp;<i class="fa fa-map-marker"></i>&nbsp;{{ec.ecUserPlace}}<br />
+                  <span class="commentDate"><i class="fa fa-calendar"></i>&nbsp;{{ec.ecDate}}
+                  </span></div>
+              </div> 
             </div>
             <div class="comment-content">
               <p>{{ec.ecComments}}</p>
