@@ -1,0 +1,26 @@
+<ion-header>
+
+  <ion-navbar color="primary" >
+    <button ion-button menuToggle (click)="toggleMenu();">
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title>Top Competition</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content> 
+    <ion-list>
+      <div *ngFor="let i of competitionJson">        
+      <ion-item (click)="goToCompetitionDisplay(i.competitionMode)" >
+        <ion-thumbnail item-start>
+          <img [src]="i.competitionLogo" >
+        </ion-thumbnail>
+        <h2 style="padding-bottom:35px;" [innerHTML]="i.competitionName"></h2>
+      </ion-item>
+      </div>
+    </ion-list>
+   
+  
+</ion-content>

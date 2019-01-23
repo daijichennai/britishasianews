@@ -21,6 +21,7 @@ import { MatrimonialDisplayPage } from "../pages/matrimonial-display/matrimonial
 import { SettingsPage } from "../pages/settings/settings";
 import { Firebase } from '@ionic-native/firebase';
 import { LazyLoadImageModule } from 'ng2-lazyload-image';
+import { CommfuncProvider } from '../providers/commfunc/commfunc';
 
 @NgModule({
   declarations: [
@@ -61,7 +62,8 @@ import { LazyLoadImageModule } from 'ng2-lazyload-image';
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     Network,
     Firebase,
-    NetworkProvider
+    NetworkProvider,
+    CommfuncProvider
   ]
 })
 export class AppModule {}
