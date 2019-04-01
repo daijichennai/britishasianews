@@ -2,7 +2,8 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, LoadingController } from 'ionic-angular';
 import { Observable } from 'rxjs/Observable';
 import { HttpClient } from '@angular/common/http';
- 
+import { CommfuncProvider } from '../../providers/commfunc/commfunc';
+
 @IonicPage()
 @Component({
   selector: 'page-football-live',
@@ -21,16 +22,17 @@ export class FootballLivePage {
   constructor(public navCtrl: NavController,
               public navParams: NavParams,
               public http: HttpClient,
-              public loadingCtrl: LoadingController
+              public loadingCtrl: LoadingController,
+              public myCommFun: CommfuncProvider
      ) 
      {
-    this.tokenID = '4c941ae9ec8529b5f7c8c83484acb6db';
+    
   }
 
   ionViewDidLoad() {
     this.getMatches(2,20); //recent Match 
-    this.getMatches(1, 20); //Upcoming Match 
-    this.getMatches(3, 20); //Live Match 
+    // this.getMatches(1, 20); //Upcoming Match 
+    // this.getMatches(3, 20); //Live Match 
   }
 
   getMatches(status, perPage) {
@@ -41,9 +43,9 @@ export class FootballLivePage {
     var strDate = fromDate + "_" + toDate;
     
     if (status === 1) {
-      url = "https://rest.entitysport.com/soccer/matches?status=" + status + "&token=" + this.tokenID + "&paged=1&per_page=" + perPage + "&order=asc&date=" + strDate;
+      url = "https://rest.entitysport.com/soccer/matches?status=" + status + "&token=" + this.myCommFun.tokenID + "&paged=1&per_page=" + perPage + "&order=asc&date=" + strDate;
     } else {
-      url = "https://rest.entitysport.com/soccer/matches?status=" + status + "&token=" + this.tokenID + "&paged=1&per_page=" + perPage;
+      url = "https://rest.entitysport.com/soccer/matches?status=" + status + "&token=" + this.myCommFun.tokenID + "&paged=1&per_page=" + perPage;
     } 
     let loader = this.loadingCtrl.create({
       content: 'Please wait...'
@@ -102,11 +104,11 @@ export class FootballLivePage {
     //return today;
   }
 
-  goToScoreCard(matchID) {
-    alert(matchID);
-    // this.navCtrl.push('ScorecardPage', {
-    //   "matchID": matchID
-    // });
+  goToScoreCard(mID) {
+    //alert(matchID);
+    this.navCtrl.push('FootballScoreCardPage', {
+      "matchID": mID
+    });
   }
 
   segmentChanged(){

@@ -10,6 +10,7 @@ import { Injectable } from '@angular/core';
 @Injectable()
 export class CommfuncProvider {
 
+  public tokenID: string = '4c941ae9ec8529b5f7c8c83484acb6db'
   public domainName: string = "https://www.britishasianews.com/";
   //public domainName: string = "http://192.168.1.2/britAsiaNews/";
 

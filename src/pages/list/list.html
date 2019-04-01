@@ -8,21 +8,17 @@
 </ion-header>
 
 <ion-content  #container>
-  <div style="padding-left:1px;border:1px solid red" >
+  <div>
     <ion-grid>
       <ion-row>
         <ion-col col-6 text-center>
-          <ion-card class="square" (click)="goToFootballLive()" >
-            <ion-card-content>
-              Football Live
-            </ion-card-content>
-          </ion-card>
+          <ion-card (click)="goToFootballLive()">
+            <img src="https://www.tvdaijiworld.com/britAsiaNews/football.png">
+          </ion-card>         
         </ion-col>
         <ion-col col-6 text-center>
-          <ion-card class="square" (click)="goToCricketLive()" >
-            <ion-card-content>
-              Cricket Live
-            </ion-card-content>
+          <ion-card (click)="goToCricketLive()" >
+              <img src="https://www.tvdaijiworld.com/britAsiaNews/cricket.png">
           </ion-card>
         </ion-col>
       </ion-row>

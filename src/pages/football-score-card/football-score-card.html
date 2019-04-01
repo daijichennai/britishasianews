@@ -1,0 +1,179 @@
+<ion-header>
+  <ion-navbar color="primary">
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title>Football Live</ion-title>
+  </ion-navbar>
+</ion-header>
+
+
+<ion-content padding>
+  <div *ngFor="let m of matchJson">
+    <div class="tile">
+      <div class="wrapper">
+        <h4 class="compTitle" text-center [innerHtml]="m.competition.cname"></h4>
+        <div class="stats">
+          <div style="padding:10px;">
+            <strong>
+              <img [src]="m.teams.home.logo" style="height:50px;width:50px;" class="img-circle" alt="Avatar">
+            </strong>
+            {{m.teams.home.fullname}}
+          </div>
+          <div style="text-align: center;vertical-align: middle;">
+            <br>
+            <b>{{m.result.home}}</b> - <b>{{m.result.away}}</b><br>
+            <b>Won : {{m.result.winner}}</b><br>
+            <b>Timing : {{m.time}} Mins</b><br>
+            <b>Status : {{m.gamestate_str}}</b>
+          </div>
+          <div style="padding:10px;">
+            <strong>
+              <img [src]="m.teams.away.logo" style="height:50px;width:50px;" class="img-circle" alt="Avatar">
+            </strong>
+            {{m.teams.away.fullname}}
+          </div>
+        </div>
+        <h4 class="compTitle ">Venue : {{m.venue.location}}</h4>
+      </div>
+    </div>
+  </div>
+
+  <ion-segment [(ngModel)]="tabs">
+    <ion-segment-button value="lineUps">
+      Line-Ups
+    </ion-segment-button>
+    <ion-segment-button value="commentary">
+      Commentary
+    </ion-segment-button>
+    <ion-segment-button value="matchStats">
+      Match Stats
+    </ion-segment-button>
+  </ion-segment>
+
+  <div [ngSwitch]="tabs">
+    <ion-list *ngSwitchCase="'lineUps'">
+      <br>
+      <ion-grid>
+        <ion-row>
+          <ion-col col-6>
+            <table>
+              <tr>
+                <td text-center colspan="3"><b>Home</b></td>
+              </tr>
+              <tr *ngFor="let hl of homeLineUps">
+                <td>
+                  <div class="block">
+                    <div class="circle">
+                      <p>{{hl.shirtnumber}}</p>
+                    </div>
+                  </div>
+                </td>
+                <td>&nbsp;</td>
+                <td>
+                  {{hl.pname}}
+                </td>
+              </tr>
+            </table>
+          </ion-col>
+
+          <ion-col col-6>
+            <table>
+              <tr>
+                <td text-center colspan="3"><b>Away</b></td>
+              </tr>
+              <tr *ngFor="let al of awayLineUps">
+                <td>
+                  <div class="block">
+                    <div class="circle">
+                      <p>{{al.shirtnumber}}</p>
+                    </div>
+                  </div>
+                </td>
+                <td>&nbsp;</td>
+                <td>
+                  {{al.pname}}
+                </td>
+              </tr>
+            </table>
+
+          </ion-col>
+
+        </ion-row>
+      </ion-grid>
+
+      <ion-grid>
+        <ion-row>
+          <ion-col col-6>
+            <table>
+              <tr>
+                <td text-center colspan="3"><b>Substitutes</b></td>
+              </tr>
+              <tr *ngFor="let hs of homeSubstitutes">
+                <td>
+                  <div class="block">
+                    <div class="circle">
+                      <p>{{hs.shirtnumber}}</p>
+                    </div>
+                  </div>
+                </td>
+                <td>&nbsp;</td>
+                <td>
+                  {{hs.pname}}
+                </td>
+              </tr>
+            </table>
+          </ion-col>
+      <ion-col col-6>
+        <table>
+          <tr>
+            <td text-center colspan="3"><b>Substitutes</b></td>
+          </tr>
+          <tr *ngFor="let awaySub of awaySubstitutes">
+            <td>
+              <div class="block">
+                <div class="circle">
+                  <p>{{awaySub.shirtnumber}}</p>
+                </div>
+              </div>
+            </td>
+            <td>&nbsp;</td>
+            <td>
+              {{awaySub.pname}}
+            </td>
+          </tr>
+        </table>
+      
+      </ion-col>
+          
+      
+        </ion-row>
+      </ion-grid>
+
+    </ion-list>
+
+    <ion-list *ngSwitchCase="'commentary'">
+      <br>
+      <ion-grid>
+        <ion-row *ngFor="let c of commentaryJson">
+          <ion-col col-2 text-center>
+            <div class="block">
+              <div class="circle">
+                <p>{{c.time}}'</p>
+              </div>
+            </div>
+          </ion-col>
+          <ion-col col-10 text-justify>
+            <span [innerHTML]="chkGoal(c.event)"></span> {{c.sentence}}
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+    </ion-list>
+
+    <ion-list *ngSwitchCase="'matchStats'">
+      Match Stats
+    </ion-list>
+
+  </div>
+
+</ion-content>
