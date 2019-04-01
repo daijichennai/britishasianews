@@ -8,23 +8,31 @@
 </ion-header>
 
 <ion-content  #container>
-    <!-- <ion-list>
-        <ion-item *ngFor="let i of listOfNews" >
-          <ion-thumbnail item-start>
-              <img [src]="i.newsImage" (click)="getNewsID(i.newsID,i.newsCategoryName,i.newsTitle,i.newsCategoryID)"  >
-          </ion-thumbnail>
-          <h2  text-wrap (click)="getNewsID(i.newsID,i.newsCategoryName,i.newsTitle,i.newsCategoryID)">{{i.newsTitle}}</h2>
-          <ion-icon style="font-size: 1em" name="calendar">&nbsp;{{i.newsDate}}&nbsp;</ion-icon>
-          <ion-icon style="font-size: 1em" name="ios-text">&nbsp;{{i.activecomments}}</ion-icon>
-        </ion-item>        
-      </ion-list> -->
-
+  <div style="padding-left:1px;border:1px solid red" >
+    <ion-grid>
+      <ion-row>
+        <ion-col col-6 text-center>
+          <ion-card class="square" (click)="goToFootballLive()" >
+            <ion-card-content>
+              Football Live
+            </ion-card-content>
+          </ion-card>
+        </ion-col>
+        <ion-col col-6 text-center>
+          <ion-card class="square" (click)="goToCricketLive()" >
+            <ion-card-content>
+              Cricket Live
+            </ion-card-content>
+          </ion-card>
+        </ion-col>
+      </ion-row>
+  
+    </ion-grid>
+  </div>
 <ion-card *ngFor="let i of listOfNews" >
   <img [defaultImage]="'../assets/imgs/lazyBritLogo.png'" [lazyLoad]="i.newsImage" (click)="getNewsID(i.newsID,i.newsCategoryName,i.newsTitle,i.newsCategoryID)"
     [scrollObservable]="container.ionScroll" />
     <!-- <img [src]="i.newsImage" (click)="getNewsID(i.newsID,i.newsCategoryName,i.newsTitle,i.newsCategoryID)"> -->
-  
-  
     <ion-card-content>
       <p (click)="getNewsID(i.newsID,i.newsCategoryName,i.newsTitle,i.newsCategoryID)">{{i.newsTitle}}</p>
     </ion-card-content>

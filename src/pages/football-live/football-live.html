@@ -1,0 +1,137 @@
+<ion-header>
+  <ion-navbar color="primary">
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title>Football Live</ion-title>
+  </ion-navbar>
+</ion-header>
+
+
+<ion-content padding>
+<ion-segment [(ngModel)]="tabs" (ionChange)="segmentChanged()">
+  <ion-segment-button value="recentMatch">
+    Recent
+  </ion-segment-button>
+  <ion-segment-button value="upcomingMatch">
+    Upcoming  
+  </ion-segment-button>
+  <ion-segment-button value="liveMatch">
+    Live 
+  </ion-segment-button>
+</ion-segment>
+
+ <div [ngSwitch]="tabs">
+    <ion-list *ngSwitchCase="'recentMatch'">
+      <div *ngIf="isHideRecentMatch"><br>
+        <h6 style="color:red;text-align: center;">
+          No Recent Match Available
+        </h6>
+      </div><br>      
+      <div *ngFor="let r of recentJson">
+        <div class="tile">
+          <div class="wrapper">
+            <h4 class="compTitle" text-center [innerHtml]="r.competition.cname" ></h4>
+            <div class="stats">
+              <div style="padding:10px;">
+                <strong>
+                  <img [src]="r.teams.home.logo"style="height:50px;width:50px;" class="img-circle" alt="Avatar">
+                </strong> 
+                {{r.teams.home.fullname}}
+              </div>
+              <div style="text-align: center;vertical-align: middle;">
+                <br>
+                <b>{{r.result.home}}</b> - <b>{{r.result.away}}</b><br>
+                <b>Won  : {{r.result.winner}}</b><br>
+                <b>Timing : {{r.time}} Mins</b><br>
+                <b>Status : {{r.gamestate_str}}</b>
+              </div>
+              <div style="padding:10px;">
+                <strong>
+                  <img [src]="r.teams.away.logo" style="height:50px;width:50px;" class="img-circle" alt="Avatar">
+                </strong>
+                {{r.teams.away.fullname}}
+              </div>
+            </div>
+            <h4 class="compTitle ">Venue : {{r.venue.location}}</h4>
+          </div>
+        </div>
+      </div>   
+    </ion-list>
+
+    <ion-list *ngSwitchCase="'upcomingMatch'">
+      <div *ngIf="isHideUpcomingMatch"><br>
+        <h6 style="color:red;text-align: center;">
+          No Upcoming Match Available
+        </h6>
+      </div><br>
+      <div *ngFor="let u of upcomingJson">
+        <div class="tile">
+          <div class="wrapper">
+            <h4 class="compTitle" text-center [innerHtml]="u.competition.cname"></h4>
+            <div class="stats">
+              <div style="padding:10px;">
+                <strong>
+                  <img [src]="u.teams.home.logo" style="height:50px;width:50px;" class="img-circle" alt="Avatar">
+                </strong>
+                {{u.teams.home.fullname}}
+              </div>
+              <div style="text-align: center;vertical-align: middle;">
+                <br>
+                <b>{{u.result.home}}</b> - <b>{{u.result.away}}</b><br>
+                <b *ngIf="u.result.winner"  >Won : {{u.result.winner}}<br></b>
+                <b>Timing : {{u.time}} Mins</b><br>
+                <b>Status : {{u.gamestate_str}}</b>
+              </div>
+              <div style="padding:10px;">
+                <strong>
+                  <img [src]="u.teams.away.logo" style="height:50px;width:50px;" class="img-circle" alt="Avatar">
+                </strong>
+                {{u.teams.away.fullname}}
+              </div>
+            </div>
+            <h4 class="compTitle ">Venue : {{u.venue.location}}</h4>
+          </div>
+        </div>
+      </div>
+    </ion-list>
+
+    <ion-list *ngSwitchCase="'liveMatch'">
+      <div *ngIf="isHideLiveMatch">
+        <br>
+        <h6 style="color:red;text-align: center;">
+          No Live Match Available
+        </h6>
+      </div><br>
+      <div *ngFor="let l of liveJson">
+        <div class="tile">
+          <div class="wrapper">
+            <h4 class="compTitle" text-center [innerHtml]="l.competition.cname"></h4>
+            <div class="stats">
+              <div style="padding:10px;">
+                <strong>
+                  <img [src]="l.teams.home.logo" style="height:50px;width:50px;" class="img-circle" alt="Avatar">
+                </strong>
+                {{l.teams.home.fullname}}
+              </div>
+              <div style="text-align: center;vertical-align: middle;">
+                <br>
+                <b>{{l.result.home}}</b> - <b>{{l.result.away}}</b><br>
+                <b>Won : {{l.result.winner}}</b><br>
+                <b>Timing : {{l.time}} Mins</b><br>
+                <b>Status : {{l.gamestate_str}}</b>
+              </div>
+              <div style="padding:10px;">
+                <strong>
+                  <img [src]="l.teams.away.logo" style="height:50px;width:50px;" class="img-circle" alt="Avatar">
+                </strong>
+                {{l.teams.away.fullname}}
+              </div>
+            </div>
+            <h4 class="compTitle ">Venue : {{l.venue.location}}</h4>
+          </div>
+        </div>
+      </div>
+    </ion-list>
+  </div>
+</ion-content>

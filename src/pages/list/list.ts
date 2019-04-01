@@ -109,6 +109,13 @@ export class ListPage {
     });
   }
 
+  goToFootballLive(){
+    this.navCtrl.push('FootballLivePage');
+  }
+
+  goToCricketLive(){
+    this.navCtrl.push('CricketLivePage');
+  }
 
    
 }
