@@ -1,7 +1,7 @@
 page-football-score-card {
-.img-circle{
-        height: 5vw; 
-        width: 5vw; 
+    .img-circle {
+        height: 5vw;
+        width: 5vw;
         border: 2px solid #fff;
         border-radius: 50%;
         box-shadow: 0 0 5px gray;
@@ -9,18 +9,17 @@ page-football-score-card {
         margin-left: auto;
         margin-right: auto;
     }
- .compTitle {
-            padding: 10px 10px 5px;
-            line-height: 15px;
-            font-size: 14px;
-            background: #ecebeb;
-            font-weight: bold;
-            text-decoration: none;            
-        }
-
+    .compTitle {
+        padding: 10px 10px 5px;
+        line-height: 15px;
+        font-size: 14px;
+        background: #ecebeb;
+        font-weight: bold;
+        text-decoration: none;
+    }
     .tile {
         width: 100%;
-        box-shadow: 1px 4px 8px 5px rgba(0,0,0,0.2);
+        box-shadow: 1px 4px 8px 5px rgba(0, 0, 0, 0.2);
         transition: 0.3s;
         vertical-align: middle;
     }
@@ -40,12 +39,11 @@ page-football-score-card {
         float: left;
         text-align: center;
     }
-     a:hover {
-            color: #f44336;
-            text-decoration: none;
-        }
-
-    .block {   
+    a:hover {
+        color: #f44336;
+        text-decoration: none;
+    }
+    .block {
         text-align: center;
         vertical-align: middle;
     }
@@ -61,8 +59,7 @@ page-football-score-card {
     .circle p {
         vertical-align: middle;
         display: table-cell;
-    } 
-
+    }
     .progress-bar {
         float: left;
         width: 0%;
@@ -72,15 +69,13 @@ page-football-score-card {
         color: #fff;
         text-align: center;
         background-color: #337ab7;
-        -webkit-box-shadow: inset 0 -1px 0 rgba(0,0,0,.15);
-        box-shadow: inset 0 -1px 0 rgba(0,0,0,.15);
+        -webkit-box-shadow: inset 0 -1px 0 rgba(0, 0, 0, .15);
+        box-shadow: inset 0 -1px 0 rgba(0, 0, 0, .15);
         -webkit-transition: width .6s ease;
         -o-transition: width .6s ease;
         transition: width .6s ease;
-}
-
+    }
     .progress-bar-danger {
         background-color: #d9534f;
     }
-
 }

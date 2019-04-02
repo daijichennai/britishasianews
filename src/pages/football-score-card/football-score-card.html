@@ -1,191 +1,271 @@
 <ion-header>
-  <ion-navbar color="primary">
-    <button ion-button menuToggle>
+    <ion-navbar color="primary">
+        <button ion-button menuToggle>
       <ion-icon name="menu"></ion-icon>
     </button>
-    <ion-title>Football Live</ion-title>
-  </ion-navbar>
+        <ion-title>Football Live</ion-title>
+    </ion-navbar>
 </ion-header>
 
 
 <ion-content padding>
-  <div *ngFor="let m of matchJson">
-    <div class="tile">
-      <div class="wrapper">
-        <h4 class="compTitle" text-center [innerHtml]="m.competition.cname"></h4>
-        <div class="stats">
-          <div style="padding:10px;">
-            <strong>
+    <div *ngFor="let m of matchJson">
+        <div class="tile">
+            <div class="wrapper">
+                <h4 class="compTitle" text-center [innerHtml]="m.competition.cname"></h4>
+                <div class="stats">
+                    <div style="padding:10px;">
+                        <strong>
               <img [src]="m.teams.home.logo" style="height:50px;width:50px;" class="img-circle" alt="Avatar">
-            </strong>
-            {{m.teams.home.fullname}}
-          </div>
-          <div style="text-align: center;vertical-align: middle;">
-            <br>
-            <b>{{m.result.home}}</b> - <b>{{m.result.away}}</b><br>
-            <b>Won : {{m.result.winner}}</b><br>
-            <b>Timing : {{m.time}} Mins</b><br>
-            <b>Status : {{m.gamestate_str}}</b>
-          </div>
-          <div style="padding:10px;">
-            <strong>
+            </strong> {{m.teams.home.fullname}}
+                    </div>
+                    <div style="text-align: center;vertical-align: middle;">
+                        <br>
+                        <b>{{m.result.home}}</b> - <b>{{m.result.away}}</b><br>
+                        <b>Won : {{m.result.winner}}</b><br>
+                        <b>Timing : {{m.time}} Mins</b><br>
+                        <b>Status : {{m.gamestate_str}}</b>
+                    </div>
+                    <div style="padding:10px;">
+                        <strong>
               <img [src]="m.teams.away.logo" style="height:50px;width:50px;" class="img-circle" alt="Avatar">
-            </strong>
-            {{m.teams.away.fullname}}
-          </div>
-        </div>
-        <h4 class="compTitle ">Venue : {{m.venue.location}}</h4>
-      </div>
-    </div>
-  </div>
-
-  <ion-segment [(ngModel)]="tabs">
-    <ion-segment-button value="lineUps">
-      Line-Ups
-    </ion-segment-button>
-    <ion-segment-button value="commentary">
-      Commentary
-    </ion-segment-button>
-    <ion-segment-button value="matchStats">
-      Match Stats
-    </ion-segment-button>
-  </ion-segment>
-
-  <p [ngSwitch]="tabs">
-    <ion-list *ngSwitchCase="'lineUps'">
-      <br>
-      <ion-grid>
-        <ion-row>
-          <ion-col col-6>
-            <table>
-              <tr>
-                <td text-center colspan="3"><b>Home</b></td>
-              </tr>
-              <tr *ngFor="let hl of homeLineUps">
-                <td>
-                  <div class="block">
-                    <div class="circle">
-                      <p>{{hl.shirtnumber}}</p>
+            </strong> {{m.teams.away.fullname}}
                     </div>
-                  </div>
-                </td>
-                <td>&nbsp;</td>
-                <td>
-                  {{hl.pname}}
-                </td>
-              </tr>
-            </table>
-          </ion-col>
-
-          <ion-col col-6>
-            <table>
-              <tr>
-                <td text-center colspan="3"><b>Away</b></td>
-              </tr>
-              <tr *ngFor="let al of awayLineUps">
-                <td>
-                  <div class="block">
-                    <div class="circle">
-                      <p>{{al.shirtnumber}}</p>
-                    </div>
-                  </div>
-                </td>
-                <td>&nbsp;</td>
-                <td>
-                  {{al.pname}}
-                </td>
-              </tr>
-            </table>
-
-          </ion-col>
-
-        </ion-row>
-      </ion-grid>
-
-      <ion-grid>
-        <ion-row>
-          <ion-col col-6>
-            <table>
-              <tr>
-                <td text-center colspan="3"><b>Substitutes</b></td>
-              </tr>
-              <tr *ngFor="let hs of homeSubstitutes">
-                <td>
-                  <div class="block">
-                    <div class="circle">
-                      <p>{{hs.shirtnumber}}</p>
-                    </div>
-                  </div>
-                </td>
-                <td>&nbsp;</td>
-                <td>
-                  {{hs.pname}}
-                </td>
-              </tr>
-            </table>
-          </ion-col>
-      <ion-col col-6>
-        <table>
-          <tr>
-            <td text-center colspan="3"><b>Substitutes</b></td>
-          </tr>
-          <tr *ngFor="let awaySub of awaySubstitutes">
-            <td>
-              <div class="block">
-                <div class="circle">
-                  <p>{{awaySub.shirtnumber}}</p>
                 </div>
-              </div>
-            </td>
-            <td>&nbsp;</td>
-            <td>
-              {{awaySub.pname}}
-            </td>
-          </tr>
-        </table>
-      
-      </ion-col>
-          
-      
-        </ion-row>
-      </ion-grid>
-
-    </ion-list>
-
-    <ion-list *ngSwitchCase="'commentary'">
-      <br>
-      <ion-grid>
-        <ion-row *ngFor="let c of commentaryJson">
-          <ion-col col-2 text-center>
-            <div class="block">
-              <div class="circle">
-                <p>{{c.time}}'</p>
-              </div>
+                <h4 class="compTitle ">Venue : {{m.venue.location}}</h4>
             </div>
-          </ion-col>
-          <ion-col col-10 text-justify>
-            <span [innerHTML]="chkGoal(c.event)"></span> {{c.sentence}}
-          </ion-col>
-        </ion-row>
-      </ion-grid>
-    </ion-list>
-
-    <ion-list *ngSwitchCase="'matchStats'">
-    <div class="progress-group">
-      <div class="progress sm">
-        <div class="progress-bar progress-bar-aqua" style="width:50%">100</div>
-        <div class="progress-bar progress-bar-danger" style="width:50%">100</div>
-      </div>
+        </div>
     </div>
-    <div id="upAgreeValue">
 
+    <div *ngIf="isShow" >
+        <ion-segment [(ngModel)]="tabs">
+            <ion-segment-button value="lineUps">
+                Line-Ups
+            </ion-segment-button>
+            <ion-segment-button value="commentary">
+                Commentary
+            </ion-segment-button>
+            <ion-segment-button value="matchStats">
+                Match Stats
+            </ion-segment-button>
+        </ion-segment>
+    
+        <div [ngSwitch]="tabs">
+            <ion-list *ngSwitchCase="'lineUps'">
+                <br>
+                <ion-grid>
+                    <ion-row>
+                        <ion-col col-6>
+                            <table >
+                                <tr>
+                                    <td text-center colspan="3"><b>Home</b></td>
+                                </tr>
+                                <tr *ngFor="let hl of homeLineUps">
+                                    <td style="padding-bottom: 5px;" >
+                                        <div class="block">
+                                            <div class="circle">
+                                                <p>{{hl.shirtnumber}}</p>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td>&nbsp;</td>
+                                    <td>
+                                        {{hl.pname}}
+                                    </td>
+                                </tr>
+                            </table>
+                        </ion-col>
+    
+                        <ion-col col-6>
+                            <table>
+                                <tr>
+                                    <td text-center colspan="3"><b>Away</b></td>
+                                </tr>
+                                <tr *ngFor="let al of awayLineUps">
+                                    <td style="padding-bottom: 5px;" >
+                                        <div class="block">
+                                            <div class="circle">
+                                                <p>{{al.shirtnumber}}</p>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td>&nbsp;</td>
+                                    <td>
+                                        {{al.pname}}
+                                    </td>
+                                </tr>
+                            </table>
+    
+                        </ion-col>
+    
+                    </ion-row>
+                </ion-grid>
+    
+                <ion-grid>
+                    <ion-row>
+                        <ion-col col-6>
+                            <table>
+                                <tr>
+                                    <td text-center colspan="3"><b>Substitutes</b></td>
+                                </tr>
+                                <tr *ngFor="let hs of homeSubstitutes">
+                                    <td style="padding-bottom: 5px;" >
+                                        <div class="block">
+                                            <div class="circle">
+                                                <p>{{hs.shirtnumber}}</p>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td>&nbsp;</td>
+                                    <td>
+                                        {{hs.pname}}
+                                    </td>
+                                </tr>
+                            </table>
+                        </ion-col>
+                        <ion-col col-6>
+                            <table>
+                                <tr>
+                                    <td text-center colspan="3"><b>Substitutes</b></td>
+                                </tr>
+                                <tr *ngFor="let awaySub of awaySubstitutes">
+                                    <td style="padding-bottom: 5px;" >
+                                        <div class="block">
+                                            <div class="circle">
+                                                <p>{{awaySub.shirtnumber}}</p>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td>&nbsp;</td>
+                                    <td>
+                                        {{awaySub.pname}}
+                                    </td>
+                                </tr>
+                            </table>
+    
+                        </ion-col>
+    
+    
+                    </ion-row>
+                </ion-grid>
+    
+            </ion-list>
+    
+            <ion-list *ngSwitchCase="'commentary'">
+                <br>
+                <ion-grid>
+                    <ion-row *ngFor="let c of commentaryJson">
+                        <ion-col col-2 text-center>
+                            <div class="block">
+                                <div class="circle">
+                                    <p>{{c.time}}'</p>
+                                </div>
+                            </div>
+                        </ion-col>
+                        <ion-col col-10 text-justify>
+                            <span [innerHTML]="chkGoal(c.event)"></span> {{c.sentence}}
+                        </ion-col>
+                    </ion-row>
+                </ion-grid>
+            </ion-list>
+    
+            <ion-list *ngSwitchCase="'matchStats'">
+                <br>
+                <div>
+                    <div class="progress-group" padding>
+                        <h4 text-center>POSSESSION</h4>
+                        <div class="progress sm">
+                            <div class="progress-bar progress-bar-aqua"
+                                [ngStyle]="{'width.%': widthForHomeTeam(matchStatsJson.statistics[0].home,matchStatsJson.statistics[0].away)}">
+                                {{this.matchStatsJson.statistics[0].home}}</div>
+                            <div class="progress-bar progress-bar-danger"
+                                [ngStyle]="{'width.%': widthForAwayTeam(matchStatsJson.statistics[0].home,matchStatsJson.statistics[0].away)}">
+                                {{this.matchStatsJson.statistics[0].away}}</div>
+                        </div>
+                        <br>
+                    </div>
+    
+                    <div class="progress-group" padding>
+                        <h4 text-center>SUBSTITUTIONS</h4>
+                        <div class="progress sm">
+                            <div class="progress-bar progress-bar-aqua"
+                                [ngStyle]="{'width.%': widthForHomeTeam(matchStatsJson.statistics[1].home,matchStatsJson.statistics[1].away)}">
+                                {{this.matchStatsJson.statistics[1].home}}</div>
+                            <div class="progress-bar progress-bar-danger"
+                                [ngStyle]="{'width.%': widthForAwayTeam(matchStatsJson.statistics[1].home,matchStatsJson.statistics[1].away)}">
+                                {{this.matchStatsJson.statistics[1].away}}</div>
+                        </div>
+                        <br>
+                    </div>
+    
+                    <div class="progress-group" padding>
+                        <h4 text-center>SHOTS ON TARGET</h4>
+                        <div class="progress sm">
+                            <div class="progress-bar progress-bar-aqua"
+                                [ngStyle]="{'width.%': widthForHomeTeam(matchStatsJson.statistics['shotsontarget'].home,matchStatsJson.statistics['shotsontarget'].away)}">
+                                {{this.matchStatsJson.statistics["shotsontarget"].home}}</div>
+                            <div class="progress-bar progress-bar-danger"
+                                [ngStyle]="{'width.%': widthForAwayTeam(matchStatsJson.statistics['shotsontarget'].home,matchStatsJson.statistics['shotsontarget'].away)}">
+                                {{this.matchStatsJson.statistics["shotsontarget"].away}}</div>
+                        </div>
+                        <br>
+                    </div>
+    
+                    <div class="progress-group" padding>
+                        <h4 text-center>CORNERS</h4>
+                        <div class="progress sm">
+                            <div class="progress-bar progress-bar-aqua"
+                                [ngStyle]="{'width.%': widthForHomeTeam(matchStatsJson.statistics[5].home,matchStatsJson.statistics[5].away)}">
+                                {{this.matchStatsJson.statistics[5].home}}</div>
+                            <div class="progress-bar progress-bar-danger"
+                                [ngStyle]="{'width.%': widthForAwayTeam(matchStatsJson.statistics[5].home,matchStatsJson.statistics[5].away)}">
+                                {{this.matchStatsJson.statistics[5].away}}</div>
+                        </div>
+                        <br>
+                    </div>
+    
+                    <div class="progress-group" padding>
+                        <h4 text-center>FOULS</h4>
+                        <div class="progress sm">
+                            <div class="progress-bar progress-bar-aqua"
+                                [ngStyle]="{'width.%': widthForHomeTeam(matchStatsJson.statistics['fouls'].home,matchStatsJson.statistics['fouls'].away)}">
+                                {{this.matchStatsJson.statistics["fouls"].home}}</div>
+                            <div class="progress-bar progress-bar-danger"
+                                [ngStyle]="{'width.%': widthForAwayTeam(matchStatsJson.statistics['fouls'].home,matchStatsJson.statistics['fouls'].away)}">
+                                {{this.matchStatsJson.statistics["fouls"].away}}</div>
+                        </div>
+                        <br>
+                    </div>
+    
+                    <div class="progress-group" padding>
+                        <h4 text-center>YELLOW CARDS</h4>
+                        <div class="progress sm">
+                            <div class="progress-bar progress-bar-aqua"
+                                [ngStyle]="{'width.%': widthForHomeTeam(matchStatsJson.statistics[0].home,matchStatsJson.statistics[0].away)}">
+                                {{this.matchStatsJson.statistics[0].home}}</div>
+                            <div class="progress-bar progress-bar-danger"
+                                [ngStyle]="{'width.%': widthForAwayTeam(matchStatsJson.statistics[0].home,matchStatsJson.statistics[0].away)}">
+                                {{this.matchStatsJson.statistics[0].away}}</div>
+                        </div>
+                        <br>
+                    </div>
+    
+                    <div class="progress-group" padding>
+                        <h4 text-center>SAVES</h4>
+                        <div class="progress sm">
+                            <div class="progress-bar progress-bar-aqua"
+                                [ngStyle]="{'width.%': widthForHomeTeam(matchStatsJson.statistics['saves'].home,matchStatsJson.statistics['saves'].away)}">
+    
+                                {{this.matchStatsJson.statistics["saves"].home}}</div>
+                            <div class="progress-bar progress-bar-danger"
+                                [ngStyle]="{'width.%': widthForAwayTeam(matchStatsJson.statistics['saves'].home,matchStatsJson.statistics['saves'].away)}">
+                                {{this.matchStatsJson.statistics["saves"].away}}</div>
+                        </div>
+                        <br>
+                    </div>
+                </div>
+            </ion-list>
+    
+        </div>
     </div>
-      <div [innerHtml]="strMatchDiv">
-        
-      </div>
-      
-    </ion-list>
-
- 
-
 </ion-content>

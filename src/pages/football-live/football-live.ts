@@ -31,8 +31,8 @@ export class FootballLivePage {
 
   ionViewDidLoad() {
     this.getMatches(2,20); //recent Match 
-    // this.getMatches(1, 20); //Upcoming Match 
-    // this.getMatches(3, 20); //Live Match 
+    this.getMatches(1, 20); //Upcoming Match 
+    this.getMatches(3, 20); //Live Match 
   }
 
   getMatches(status, perPage) {
