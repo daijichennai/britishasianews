@@ -1,0 +1,45 @@
+<ion-header>
+  <ion-navbar color="primary">
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title>Score Card</ion-title>
+  </ion-navbar>
+</ion-header>
+<ion-content padding>
+<div>
+  <ion-segment [(ngModel)]="tabs">
+    <ion-segment-button value="scorecard">
+      Score Card
+    </ion-segment-button>
+    <ion-segment-button value="commentary">
+      Commentary
+    </ion-segment-button>
+  </ion-segment>
+</div>
+
+<div [ngSwitch]="tabs">
+  <ion-list *ngSwitchCase="'scorecard'">
+    ScoreCard
+  </ion-list>
+
+  <ion-list *ngSwitchCase="'commentary'">
+    <ion-grid>
+    
+      <ion-row *ngFor="let c of commentaryJson"  >
+        <ion-col col-2 text-center >
+          {{c.score}}
+        </ion-col>
+        <ion-col col-2 text-center >
+          {{chkUndefined(c.ball, c.event, c.over)}}
+        </ion-col>
+        <ion-col col-8 text-justify >          
+          <div [innerHTML]="chkHowOut(c.how_out, c.batsman_runs, c.batsman_balls)"> </div>
+         <div [innerHTML]="chkWicket(c.event, c.commentary)" > </div>
+        </ion-col>
+      </ion-row>
+    
+    </ion-grid>
+  </ion-list>
+</div>
+</ion-content>

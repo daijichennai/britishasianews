@@ -1,21 +1,17 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-
-/*
-  Generated class for the CommfuncProvider provider.
-
-  See https://angular.io/guide/dependency-injection for more info on providers
-  and Angular DI.
-*/
+ 
 @Injectable()
 export class CommfuncProvider {
 
-  public tokenID: string = '4c941ae9ec8529b5f7c8c83484acb6db'
+  public cricketTokenID = 'be0e2fdd282afc3176c03d10cb601c09';
+  public tokenID: string = '4c941ae9ec8529b5f7c8c83484acb6db';
   public domainName: string = "https://www.britishasianews.com/";
   //public domainName: string = "http://192.168.1.2/britAsiaNews/";
 
+
   constructor(public http: HttpClient) {
-    // console.log('Hello CommfuncProvider Provider');
+    
   }
 
 }

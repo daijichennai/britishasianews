@@ -9,5 +9,123 @@
 
 
 <ion-content padding>
+<div>
+  <ion-segment [(ngModel)]="tabs">
+    <ion-segment-button value="recent">
+      Recent
+    </ion-segment-button>
+    <ion-segment-button value="upcoming">
+      Upcoming
+    </ion-segment-button>
+    <ion-segment-button value="live">
+      Live
+    </ion-segment-button>
+  </ion-segment>
+</div>
 
+<div [ngSwitch]="tabs">
+  
+    <ion-list *ngSwitchCase="'recent'">
+      <div *ngIf="isHideRecentMatch"><br>
+        <h6 style="color:red;text-align: center;">
+          No Recent Match Available
+        </h6>
+      </div><br>
+      <div *ngFor="let r of recentJson">
+      <div class="tile" (click)="goToScoreCard(r.match_id)">
+        <div class="wrapper">
+          <h4 class="text-center compTitle ">{{r.competition.title}},&nbsp;{{r.competition.season}}</h4>
+          <div class="stats">
+            <div style="padding:10px;">
+              <strong>
+                <img src="{{r.teama.logo_url}}" style="height:50px;width:50px;" class="img-circle" alt="Avatar">
+              </strong> {{r.teama.scores_full}}
+            </div>
+            <div style="text-align: center;vertical-align: middle;line-height: 100px; ">
+              <b>Vs</b>
+            </div>
+            <div style="padding:10px;">
+              <strong>
+                <img src="{{r.teamb.logo_url}}" style="height:50px;width:50px;" class="img-circle" alt="Avatar">
+              </strong>{{r.teamb.scores_full}}
+            </div>
+          </div>
+          <p class="txtPadding">
+            {{convertDate(r.date_start)}} - {{convertDate(r.date_end)}} at {{r.venue.name}},
+            {{r.venue.location}}
+          </p>
+          <h4 class="compTitle ">{{r.status_note}}</h4>
+        </div>
+      </div>
+      </div>
+    </ion-list>
+  
+
+  <ion-list *ngSwitchCase="'upcoming'">
+    <div *ngIf="isHideUpcomingMatch"><br>
+      <h6 style="color:red;text-align: center;">
+        No Upcoming Match Available
+      </h6>
+    </div><br>
+    <div *ngFor="let u of upcomingJson">
+      <div class="tile" >
+        <div class="wrapper">
+          <h4 class="text-center compTitle ">{{u.competition.title}},&nbsp;{{u.competition.season}}</h4>
+          <div class="stats">
+            <div style="padding:10px;">
+              <strong>
+                <img src="{{u.teama.logo_url}}" style="height:50px;width:50px;" class="img-circle" alt="Avatar">
+              </strong> {{u.teama.scores_full}}
+            </div>
+            <div style="text-align: center;vertical-align: middle;line-height: 75px; ">
+              <b>Vs</b>
+            </div>
+            <div style="padding:10px;">
+              <strong>
+                <img src="{{u.teamb.logo_url}}" style="height:50px;width:50px;" class="img-circle" alt="Avatar">
+              </strong>{{u.teamb.scores_full}}
+            </div>
+          </div>
+          <p class="txtPadding">{{convertDate(u.date_start)}} - {{convertDate(u.date_end)}} at {{u.venue.name}},
+            {{u.venue.location}}</p>
+          <h4 class="compTitle ">{{u.status_note}}</h4>
+        </div>
+      </div>
+    </div>
+  </ion-list>
+
+  <ion-list *ngSwitchCase="'live'">
+    <div *ngIf="isHideLiveMatch"><br>
+      <h6 style="color:red;text-align: center;">
+        No Live Match Available
+      </h6>
+    </div><br>
+    <div *ngFor="let l of liveJson">
+      <div class="tile" (click)="goToScoreCard(l.match_id)" >
+        <div class="wrapper">
+          <h4 class="text-center compTitle ">{{l.competition.title}},&nbsp;{{l.competition.season}}</h4>
+          <div class="stats">
+            <div style="padding:10px;">
+              <strong>
+                <img src="{{l.teama.logo_url}}" style="height:50px;width:50px;" class="img-circle" alt="Avatar">
+              </strong> {{l.teama.scores_full}}
+            </div>
+            <div style="text-align: center;vertical-align: middle;line-height: 100px; ">
+              <b>Vs</b>
+            </div>
+            <div style="padding:10px;">
+              <strong>
+                <img src="{{l.teamb.logo_url}}" style="height:50px;width:50px;" class="img-circle" alt="Avatar">
+              </strong>{{l.teamb.scores_full}}
+            </div>
+          </div>
+          <p class="txtPadding">{{convertDate(l.date_start)}} - {{convertDate(l.date_end)}} at {{l.venue.name}},
+            {{l.venue.location}}</p>
+          <h4 class="compTitle ">{{l.status_note}}</h4>
+        </div>
+      </div>
+    </div>
+  </ion-list>
+
+</div>
 </ion-content>

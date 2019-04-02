@@ -85,7 +85,11 @@ loadData(){
     data = this.http.get(url);
     data.subscribe(result =>{
       this.jsonItems = result;
-      loader.dismiss();
+      
+      setInterval(() => {
+        loader.dismiss();
+      }, 3000);
+      
     })
   });
 
