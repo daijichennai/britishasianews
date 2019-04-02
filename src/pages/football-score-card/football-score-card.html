@@ -51,7 +51,7 @@
     </ion-segment-button>
   </ion-segment>
 
-  <div [ngSwitch]="tabs">
+  <p [ngSwitch]="tabs">
     <ion-list *ngSwitchCase="'lineUps'">
       <br>
       <ion-grid>
@@ -171,9 +171,21 @@
     </ion-list>
 
     <ion-list *ngSwitchCase="'matchStats'">
-      Match Stats
+    <div class="progress-group">
+      <div class="progress sm">
+        <div class="progress-bar progress-bar-aqua" style="width:50%">100</div>
+        <div class="progress-bar progress-bar-danger" style="width:50%">100</div>
+      </div>
+    </div>
+    <div id="upAgreeValue">
+
+    </div>
+      <div [innerHtml]="strMatchDiv">
+        
+      </div>
+      
     </ion-list>
 
-  </div>
+ 
 
 </ion-content>
