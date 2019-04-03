@@ -78,7 +78,9 @@ export class CricketLivePage {
         console.log(result.response.items);
 
         loader.dismiss();
-      })
+      },error =>{
+        loader.dismiss();
+      });
     });
   }
 

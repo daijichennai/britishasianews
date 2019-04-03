@@ -75,12 +75,13 @@ export class FootballLivePage {
             }else{
               this.isHideRecentMatch = true;
             }
-          }
-           
+          }           
         console.log(result.response.items);
          
         loader.dismiss();
-      })
+      },error =>{
+        loader.dismiss();
+      });
     });
   }
 

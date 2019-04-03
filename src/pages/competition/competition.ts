@@ -2,7 +2,8 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, MenuController, LoadingController } from 'ionic-angular';
 import { Observable } from 'rxjs/Observable';
 import { HttpClient } from '@angular/common/http';
- 
+import { CommfuncProvider } from '../../providers/commfunc/commfunc';
+
 @IonicPage()
 @Component({
   selector: 'page-competition',
@@ -12,25 +13,27 @@ export class CompetitionPage {
   public competitionJson: any;
   public domainName: string = "";
  constructor(
-    public navCtrl: NavController,
-    public menuCtrl: MenuController,
-    public navParams: NavParams,
-    public http: HttpClient,
-    public loadingCtrl: LoadingController
+          public navCtrl: NavController,
+          public menuCtrl: MenuController,
+          public navParams: NavParams,
+          public http: HttpClient,
+          public loadingCtrl: LoadingController,
+          public myCommFun: CommfuncProvider
+
     )
      {
-    //this.domainName = "http://192.168.1.2/britAsiaNews/"
-    this.domainName = "https://www.britishasianews.com/"
+      this.domainName = this.myCommFun.domainName;
   }
 
 
   ionViewDidLoad() {
-    this.getCompetitionData();
+    //this.getCompetitionData();
   }
 
-  goToCompetitionDisplay(competitionMode: string) {
+  goToCompetitionDisplay(competitionMode: string, cID: number) { //Here CID refer to competitionID
     this.navCtrl.push('CompetitiondisplayPage', {
-      "competitionMode": competitionMode
+      "competitionMode": competitionMode,
+      "cID" :cID
     })
   }
 

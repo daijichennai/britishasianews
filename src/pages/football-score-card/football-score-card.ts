@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, LoadingController } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, LoadingController, MenuController } from 'ionic-angular';
 import { Observable } from 'rxjs/Observable';
 import { HttpClient } from '@angular/common/http';
 import { CommfuncProvider } from '../../providers/commfunc/commfunc';
@@ -25,7 +25,8 @@ export class FootballScoreCardPage {
               public navParams: NavParams,
               public http: HttpClient,
               public loadingCtrl: LoadingController,
-              public myCommFun: CommfuncProvider
+              public myCommFun: CommfuncProvider,
+              public menuCtrl: MenuController
               ) 
   {
     this.intMatchID = navParams.get('matchID');
@@ -61,7 +62,9 @@ export class FootballScoreCardPage {
         this.commentaryJson = result.response.items.commentary.reverse();
         console.log(result.response.items);
         loader.dismiss();
-      })
+      },error =>{
+        loader.dismiss();
+      });
     });
   }
 
@@ -70,7 +73,7 @@ export class FootballScoreCardPage {
     let url = '';
     url = "https://rest.entitysport.com/soccer/matches/" + matchID + "/statsv2?token=" + this.myCommFun.tokenID;
     data = this.http.get(url);
-       data.subscribe(data => {        
+       data.subscribe(data => {
          this.matchStatsJson = data.response.items;
          this.isShow = true;
         //  console.log(data.response.items.match_info[0].teams.away["tname"]);
@@ -80,6 +83,10 @@ export class FootballScoreCardPage {
         //  console.log(this.matchStatsJson.statistics[0]);
       });
  
+  }
+
+  toggleMenu() {
+    this.menuCtrl.toggle();
   }
 
 widthForHomeTeam(home, away) {

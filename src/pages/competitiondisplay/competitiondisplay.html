@@ -11,133 +11,115 @@
 
 <ion-content>
 
-  <div *ngIf="competitionMode === 'championsLeague'">
-    <div *ngFor="let s of scoreJson">
-    <ion-card *ngFor="let i of s.group" >
-      <ion-item>
-        <h1 text-center>{{i.teamName}}</h1>
-      </ion-item>
-    
-      <img width="160" height="160" [src]="i.teamImage">
-    
-      <div padding-left padding-right>
+  <div *ngIf="isHideLeague" >
+    <div *ngFor="let i of scoreJson">
+      <ion-card>
+        <ion-item>
+          <h1 text-center>{{i.tname}}</h1>
+        </ion-item>
+  
+        <img  style="width:160px;height:160px;" [src]="i.logo">
+  
+        <div padding-left padding-right>
+          <table width="100%">
+            <tr>
+              <td>Played</td>
+              <td>{{i.playedtotal}}</td>
+              <td>&nbsp;</td>
+              <td>Won</td>
+              <td>{{i.wintotal}}</td>
+            </tr>
+  
+            <tr>
+              <td>Lost</td>
+              <td>{{i.losstotal}}</td>
+  
+              <td>&nbsp;</td>
+              <td>Drawn</td>
+              <td>{{i.drawtotal}}</td>
+            </tr>
+  
+            <tr>
+              <td>Goal For</td>
+              <td>{{i.goalsfortotal}}</td>
+  
+              <td>&nbsp;</td>
+              <td>Goal Against</td>
+              <td>{{i.goalsagainsttotal}}</td>
+            </tr>
+  
+            <tr>
+              <td>Goal GD</td>
+              <td>{{i.goaldifftotal}}</td>
+  
+              <td>&nbsp;</td>
+              <td>Points</td>
+              <td>{{i.pointstotal}}</td>
+            </tr>
+  
+          </table>
+        </div>
+      </ion-card>
+    </div>
+  </div>
+
+  <div *ngIf="isHideChampLeague" padding-left padding-right padding-bottom >
+    <div *ngFor="let i of scoreJson"  >
+      <h2 text-center [innerHTML]="i.name" ></h2>
+        
         <table width="100%">
           <tr>
-            <td>Played</td>
-            <td>{{i.played}}</td>
-            <td>&nbsp;</td>
-            <td>Won</td>
-            <td>{{i.won}}</td>
+            <th colspan="2">Team Name</th>
+            <th>P</th>
+            <th>W</th>
+            <th>D</th>
+            <th>L</th>
+            <th>F</th>
+            <th>GA</th>
+            <th>GD</th>
+            <th>PT</th>
           </tr>
-    
-          <tr>
-            <td>Lost</td>
-            <td>{{i.lost}}</td>
-    
-            <td>&nbsp;</td>
-            <td>Drawn</td>
-            <td>{{i.drawn}}</td>
-          </tr>
-    
-          <tr>
-            <td>Goal For</td>
-            <td>{{i.goalFor}}</td>
-    
-            <td>&nbsp;</td>
-            <td>Goal Against</td>
-            <td>{{i.goalAgainst}}</td>
-          </tr>
-    
-          <tr>
-            <td>Goal GD</td>
-            <td>{{i.goalGD}}</td>
-    
-            <td>&nbsp;</td>
-            <td>Points</td>
-            <td>{{i.points}}</td>
-          </tr>
-    
+       
+        <tr *ngFor="let g of i.tables" style="border-bottom: 1px solid #eeeeee;">
+          <td>{{g.tname}}</td>
+          <td text-center><img style="vertical-align: middle;" [src]="g.logo" height="25" width="25" ></td>
+          <td text-center>{{g.playedtotal}}</td>
+          <td text-center>{{g.wintotal}}</td>
+          <td text-center>{{g.drawtotal}}</td>
+          <td text-center>{{g.losstotal}}</td>
+          <td text-center>{{g.goalsfortotal}}</td>
+          <td text-center>{{g.goalsagainsttotal}}</td>
+          <td text-center>{{g.goaldifftotal}}</td>
+          <td text-center>{{g.pointstotal}}</td>
+        </tr>
         </table>
-      </div>
-    </ion-card>
     </div>
   </div>
 
-  <div *ngIf="competitionMode === 'premierLeague'">
-    <ion-card *ngFor="let i of scoreJson"  >    
-      <ion-item>
-        <h1 text-center >{{i.teamName}}</h1>
-      </ion-item>
-    
-      <img width="160" height="160" [src]="i.teamImage">
-       
-      <div padding-left padding-right >
-      <table width="100%">
-        <tr>
-          <td>Played</td>
-          <td>{{i.played}}</td>
-          <td>&nbsp;</td>
-          <td>Won</td>
-          <td>{{i.won}}</td>
-        </tr>
-
-        <tr>
-          <td>Lost</td>
-          <td>{{i.lost}}</td>
-        
-          <td>&nbsp;</td>
-          <td>Drawn</td>
-          <td>{{i.drawn}}</td>
-        </tr>
-
-        <tr>
-          <td>Goal For</td>
-          <td>{{i.goalFor}}</td>
-        
-          <td>&nbsp;</td>
-          <td>Goal Against</td>
-          <td>{{i.goalAgainst}}</td>
-        </tr>
-
-        <tr>
-          <td>Goal GD</td>
-          <td>{{i.goalGD}}</td>
-        
-          <td>&nbsp;</td>
-          <td>Points</td>
-          <td>{{i.points}}</td>
-        </tr>
-
-      </table>
-      </div>
-    </ion-card>
-  </div>
-
-  <div *ngIf="competitionMode === 'ipl'" >
-    <div padding >
-    <table  width="100%" >
-      <thead>
+  <div *ngIf="strNewsCat ==='iplStandings'" padding  >
+    <table width="100%" >
       <tr>
-        <th colspan="2">Team Name</th>
-        <th>M</th>
-        <th>W</th>
-        <th>L</th>
-        <th>T</th>
-        <th>NR</th>
-        <th>Pts</th>
+        <th text-center colspan="2" >Teams</th>
+        <th text-center>P</th>
+        <th text-center>W</th>
+        <th text-center>L</th>
+        <th text-center>D</th>
+        <th text-center>NR</th>
+        <th text-center>PTS</th>
+        <th text-center>NRR</th>
       </tr>
-      </thead>
-      <tr *ngFor="let i of scoreJson" >
-          <td text-center padding-top><img width="25" height="25" [src]="i.teamImage" alt=""></td>
-          <td>{{i.teamName}}</td>
-          <td text-center >{{i.match}}</td>
-          <td text-center>{{i.won}}</td>
-          <td text-center>{{i.lost}}</td>
-          <td text-center>{{i.tied}}</td>
-          <td text-center>{{i.noResult}}</td>
-          <td text-center>{{i.points}}</td>
+      <tr *ngFor="let ipl of iplJson" style="border-bottom: 1px solid #eeeeee;"  >
+        <img height="25" width="25" [src]="iplLogo(ipl.team.title)" />
+        <td>{{ipl.team.abbr}}</td>
+        <td text-center>{{ipl.played}}</td>
+        <td text-center>{{ipl.win}}</td>
+        <td text-center>{{ipl.loss}}</td>
+        <td text-center>{{ipl.draw}}</td>
+        <td text-center>{{ipl.nr}}</td>
+        <td text-center>{{ipl.points}}</td>
+        <td text-center>{{ipl.netrr}}</td>
       </tr>
     </table>
-    </div>
   </div>
+
 </ion-content>

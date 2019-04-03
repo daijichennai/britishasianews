@@ -8,7 +8,7 @@ import { ListPage } from '../list/list';
 import { Subscription } from '../../../node_modules/rxjs/Subscription';
 import { SocialSharing } from "@ionic-native/social-sharing";
 import { Network } from "@ionic-native/network";
-
+import { CommfuncProvider } from '../../providers/commfunc/commfunc';
 @Component({
   selector: 'page-home',
   templateUrl: 'home.html'
@@ -27,11 +27,11 @@ export class HomePage {
               public loadingCtrl : LoadingController,
               public socialSharing : SocialSharing,
               public network:Network,
-              public toast :ToastController
+              public toast :ToastController,
+    public myCommFun: CommfuncProvider
             
             ) { 
-    //this.domainName = 'http://192.168.1.2/britAsiaNews/'
-    this.domainName = "https://www.britishasianews.com/"
+    this.domainName = this.myCommFun.domainName;
     this.checkNetwork()
 
     this.disconnected = this.network.onDisconnect().subscribe(data => {
@@ -85,12 +85,14 @@ loadData(){
     data = this.http.get(url);
     data.subscribe(result =>{
       this.jsonItems = result;
+      loader.dismiss();
+      // setInterval(() => {
+      //   loader.dismiss();
+      // }, 3000);
       
-      setInterval(() => {
-        loader.dismiss();
-      }, 3000);
-      
-    })
+    },error => {
+      loader.dismiss();
+    });
   });
 
   

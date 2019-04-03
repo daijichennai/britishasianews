@@ -14,6 +14,9 @@ export class CricketScorecardPage {
   public intMatchID :number=0;
   public scoreCardJson:any;
   public commentaryJson:any;
+  public inningsNumber:string;
+  public entireCommentaryJson:any;
+
   constructor(
             public navCtrl: NavController,
             public navParams: NavParams,
@@ -26,8 +29,8 @@ export class CricketScorecardPage {
   }
 
   ionViewDidLoad() {
-    //this.getScoreCardByID(this.intMatchID);
-    this.getCommentaryByID(this.intMatchID,2);
+    this.getScoreCardByID(this.intMatchID);
+    //this.getScoreCardByID(40294);
   }
 
   getScoreCardByID(matchID) {
@@ -40,28 +43,34 @@ export class CricketScorecardPage {
     data = this.http.get(url);
     loader.present().then(() => {
       data.subscribe(result => {
-        this.scoreCardJson = result.response.innings.reverse()
+        if (result.response.innings.reverse()[1].number){
+          this.inningsNumber = result.response.innings.reverse()[1].number;
+        }else if (result.response.innings.reverse()[0].number) {
+          this.inningsNumber = result.response.innings.reverse()[0].number;
+        }
+        this.getCommentaryByID(matchID,this.inningsNumber); 
+        this.scoreCardJson = result.response.innings;
         console.log(result.response.innings.reverse());
         loader.dismiss();
-      })
+      },
+      error=>{
+        loader.dismiss();
+      });
     });
   }
 
-  getCommentaryByID(matchID,inningsNumer) {
+  getCommentaryByID(matchID, innings) {
     let data: Observable<any>;
     let url = '';
-    url = "https://rest.entitysport.com/v2/matches/" + matchID + "/innings/" + inningsNumer + "/commentary?token=" + this.myCommFun.cricketTokenID;
-    let loader = this.loadingCtrl.create({
-      content: 'Please wait...'
-    });
-    data = this.http.get(url);
-    loader.present().then(() => {
-      data.subscribe(result => {
-        this.commentaryJson = result.response.commentaries.reverse();
-        console.log(result.response.commentaries.reverse());
-        loader.dismiss();
-      })
-    });
+    url = "https://rest.entitysport.com/v2/matches/" + matchID + "/innings/" + innings + "/commentary?token=" + this.myCommFun.cricketTokenID;
+    data = this.http.get(url);    
+    data.subscribe(result => {
+         this.entireCommentaryJson = result;
+        this.commentaryJson = result.response.commentaries;
+        console.log(result.response.commentaries);
+      },error =>{
+        console.log('Error occured in Cricket Commentary');
+      });    
   }
 
   chkUndefined(ball, event, over) {
@@ -74,15 +83,23 @@ export class CricketScorecardPage {
 
  chkHowOut(chkOut, batsmanRun, batsmanBall) {
   if (typeof chkOut !== 'undefined') {
-    return "<b style='color:#f44336;'>OUT! " + chkOut + " " + batsmanRun + " (" + batsmanBall + ")" + "</b>";
+    return "<b class='colorRed' >OUT! " + chkOut + " " + batsmanRun + " (" + batsmanBall + ")" + "</b>";
   } else {
     return "";
   }
 }
 
+  convertUppercase(score) {
+    if (score === "w") {
+      return "<b class='colorRed'>W</b>"
+    } else {
+      return score;
+    }
+  }
+
   chkWicket(event, commentary) {
     if (event === 'wicket') {
-      return "<b style='color:#f44336;' >" + commentary + "</b>"
+      return "<b class='colorRed' >" + commentary + "</b>"
     } else {
       return commentary;
     }

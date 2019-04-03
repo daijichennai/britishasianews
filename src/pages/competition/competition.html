@@ -12,14 +12,70 @@
 
 <ion-content> 
     <ion-list>
-      <div *ngFor="let i of competitionJson">        
-      <ion-item (click)="goToCompetitionDisplay(i.competitionMode)" >
+
+      <ion-item (click)="goToCompetitionDisplay('premierLeague',3)">
         <ion-thumbnail item-start>
-          <img [src]="i.competitionLogo" >
+          <img src="http://www.tvdaijiworld.com/britAsiaNews/premierLogo.png">
         </ion-thumbnail>
-        <h2 style="padding-bottom:35px;" [innerHTML]="i.competitionName"></h2>
+        <h2 style="padding-bottom:35px;">Premier League</h2>
       </ion-item>
-      </div>
+      <ion-item (click)="goToCompetitionDisplay('championsLeague',11)">  <!--UEFA Champions League-->
+        <ion-thumbnail item-start>
+          <img src="http://www.tvdaijiworld.com/britAsiaNews/championsLeagueLogo.png">
+        </ion-thumbnail>
+        <h2 style="padding-bottom:35px;">UEFA Champions League</h2>
+      </ion-item>
+
+      <ion-item (click)="goToCompetitionDisplay('isl',18)">
+        <ion-thumbnail item-start>
+          <img src="https://www.tvdaijiworld.com/britAsiaNews/islLogo.png">
+        </ion-thumbnail>
+        <h2 style="padding-bottom:35px;">Indian Super League</h2>
+      </ion-item>
+
+      <ion-item (click)="goToCompetitionDisplay('europaLeague',14)">
+        <ion-thumbnail item-start>
+          <img src="https://rest.entitysport.com/soccer/assets/competition/logo_5c4ab5e4a18cd.png">
+        </ion-thumbnail>
+        <h2 style="padding-bottom:35px;">UEFA Europa League</h2>
+      </ion-item>
+
+      <ion-item (click)="goToCompetitionDisplay('ligue1',10)">
+        <ion-thumbnail item-start>
+          <img src="https://www.tvdaijiworld.com/britAsiaNews/ligue1Logo.png">
+        </ion-thumbnail>
+        <h2 style="padding-bottom:35px;">Ligue 1</h2>
+      </ion-item>
+
+      <ion-item (click)="goToCompetitionDisplay('laLiga',4)">
+        <ion-thumbnail item-start>
+          <img src="https://rest.entitysport.com/soccer/assets/competition/logo_5c4ab42ff20b8.png">
+        </ion-thumbnail>
+        <h2 style="padding-bottom:35px;">LaLiga</h2>
+      </ion-item>
+
+      <ion-item (click)="goToCompetitionDisplay('bundesliga',5)">
+        <ion-thumbnail item-start>
+          <img src="https://rest.entitysport.com/soccer/assets/competition/logo_5c4ab622bfca1.png">
+        </ion-thumbnail>
+        <h2 style="padding-bottom:35px;">Bundesliga</h2>
+      </ion-item>
+
+      <ion-item (click)="goToCompetitionDisplay('serieA',6)">
+        <ion-thumbnail item-start>
+          <img src="https://rest.entitysport.com/soccer/assets/competition/logo_5c4ab4e2ef597.png">
+        </ion-thumbnail>
+        <h2 style="padding-bottom:35px;">Serie A</h2>
+      </ion-item>
+
+      <!-- <div *ngFor="let i of competitionJson">
+        <ion-item (click)="goToCompetitionDisplay(i.competitionMode)">
+          <ion-thumbnail item-start>
+            <img [src]="i.competitionLogo">
+          </ion-thumbnail>
+          <h2 style="padding-bottom:35px;" [innerHTML]="i.competitionName"></h2>
+        </ion-item>
+      </div> -->
     </ion-list>
    
   

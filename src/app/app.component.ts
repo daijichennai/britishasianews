@@ -13,6 +13,7 @@ import { Firebase } from '@ionic-native/firebase';
 import { HttpClient } from '@angular/common/http';
 import { DisplayNewsPage } from '../pages/display-news/display-news';
 import { SettingsPage } from '../pages/settings/settings'
+import { CommfuncProvider } from '../providers/commfunc/commfunc';
 
 
 @Component({
@@ -39,14 +40,13 @@ export class MyApp {
       public app :App,
       public alertCtrl :AlertController,
       public http: HttpClient,
-      public fireBase : Firebase
+      public fireBase : Firebase,
+      public myCommFun: CommfuncProvider
     ) {
 
-    //this.domainName = "http://192.168.1.2/britAsiaNews/"
-    this.domainName = "https://www.britishasianews.com/"
+    this.domainName = this.myCommFun.domainName;
 
-    this.initializeApp();
-    
+    this.initializeApp();   
     
     // used for an example of ngFor and navigation
     this.pages = [
@@ -60,8 +60,13 @@ export class MyApp {
       { title: 'Special', component: ListPage,icon:'md-globe' ,newsCatCode :'special'},
       { title: 'Featured', component: ListPage, icon: 'md-checkmark-circle', newsCatCode: 'featured' },
       { title: 'Bollywood', component: ListPage,icon:'md-globe'  ,newsCatCode :'bollywood'},
-      { title: 'Sports', component: ListPage,icon:'md-globe' ,newsCatCode :'sports' },
+      { title: 'Sports - Football', component: ListPage, icon: 'football', newsCatCode: 'football' },
+      { title: 'Football - <b class="colorRed">Live</b>', component: 'FootballLivePage', icon: 'football', newsCatCode: 'football' },
       { title: 'Top Competitions', component: 'CompetitionPage', icon: 'trophy', newsCatCode: 'competition' },
+      { title: 'Sports - Cricket', component: ListPage, icon: 'md-globe', newsCatCode: 'cricket' },
+      { title: 'Cricket - <b class="colorRed">Live</b>', component: 'CricketLivePage', icon: 'tennisball', newsCatCode: 'football' },
+      { title: 'IPL Standings', component: 'CompetitiondisplayPage', icon: 'tennisball', newsCatCode: 'iplStandings' },
+      { title: 'Sports - Others', component: ListPage,icon:'md-globe' ,newsCatCode :'sports' },      
       { title: 'Community', component: ListPage, icon: 'md-globe', newsCatCode:'politics'},
       { title: 'Life Style', component: ListPage, icon: 'md-globe', newsCatCode:'lifestyle'},
       { title: 'Finance', component: ListPage, icon: 'md-cash', newsCatCode: 'finance' },
