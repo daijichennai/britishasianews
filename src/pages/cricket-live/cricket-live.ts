@@ -93,5 +93,27 @@ convertDate(dateValue) {
   return day + ' ' + monthNames[monthIndex] + ' ' + year;
 }
 
+  iplLogo(teamName,teamLogo) {
+    if (teamName === "Sunrisers Hyderabad") {
+      return "http://www.daijiworld.in/images3/sunrisersHyderabad.png";
+    } else if (teamName === "Rajasthan Royals") {
+      return "http://www.daijiworld.in/images3/rajasthanRroyals.png";
+    } else if (teamName === "Royal Challengers Bangalore") {
+      return "http://www.daijiworld.in/images3/royalChallengers.png";
+    } else if (teamName === "Kings XI Punjab") {
+      return "http://www.daijiworld.in/images3/punjabKings.png";
+    } else if (teamName === "Delhi Capitals") {
+      return "http://www.daijiworld.in/images3/delhiDaredevils.jpg";
+    } else if (teamName === "Kolkata Knight Riders") {
+      return "http://www.daijiworld.in/images3/kolkataKnightRiders.png";
+    } else if (teamName === "Mumbai Indians") {
+      return "http://www.daijiworld.in/images3/mumbaiIndians.png";
+    } else if (teamName === "Chennai Super Kings") {
+      return "http://www.daijiworld.in/images3/csk.png";
+    }else{
+      return teamLogo;
+    }
+  }
+
 
 }

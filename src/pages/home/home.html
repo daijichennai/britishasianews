@@ -1,5 +1,5 @@
 <ion-header>
-  <ion-navbar color="primary" >
+  <ion-navbar color="primary">
     <button ion-button menuToggle>
       <ion-icon name="menu"></ion-icon>
     </button>
@@ -7,45 +7,48 @@
   </ion-navbar>
 </ion-header>
 
-<ion-content class="card-background-page" #container> 
+<ion-content class="card-background-page" #container>
 
-    <ion-card *ngFor="let i of jsonItems" >       
-        
-<img [defaultImage]="'../assets/imgs/lazyBritLogo.png'" [lazyLoad]="i.newsImage" (click)="getNewsID(i.newsID,i.newsCategoryName,i.newsTitle,i.newsCategoryID)" [scrollObservable]="container.ionScroll" />
-        <!-- <img [src]="i.newsImage" style="background-color: red;"  (click)="getNewsID(i.newsID,i.newsCategoryName,i.newsTitle,i.newsCategoryID)"  > -->
-        <div class="card-title " (click)="listOfNewsByCatCode(i.newsCategoryCode,i.newsID,i.newsCategoryName)" >{{i.newsCategoryName}}</div>
-     
+  <ion-card *ngFor="let i of jsonItems">
 
-        <ion-card-content>
-            <p (click)="getNewsID(i.newsID,i.newsCategoryName,i.newsTitle,i.newsCategoryID)" >{{i.newsTitle}}</p>
-          </ion-card-content>
+    <img [defaultImage]="'../assets/imgs/lazyBritLogo.png'" [lazyLoad]="i.newsImage"
+      (click)="getNewsID(i.newsID,i.newsCategoryName,i.newsTitle,i.newsCategoryID)"
+      [scrollObservable]="container.ionScroll" />
+    <!-- <img [src]="i.newsImage" style="background-color: red;"  (click)="getNewsID(i.newsID,i.newsCategoryName,i.newsTitle,i.newsCategoryID)"  > -->
+    <div class="card-title " (click)="listOfNewsByCatCode(i.newsCategoryCode,i.newsID,i.newsCategoryName)">
+      {{i.newsCategoryName}}</div>
 
-          <ion-row>
-              <ion-col  col-4>
-                <button ion-button icon-start clear small>
-                  <ion-icon name="clock"></ion-icon>
-                  <div>{{i.newsDate}}</div>
-                </button>
-              </ion-col>
-              <ion-col col-4 style="text-align: center;">
-                <button ion-button icon-start clear small>
-                  <ion-icon name="text"></ion-icon>
-                  <div>{{i.activecomments}}</div>
-                </button>
-              </ion-col> 
 
-              <ion-col col-4>
-                  <button ion-button icon-start clear small>
-                    <ion-icon name="share-alt"></ion-icon>
-                    <div (click)="shareNews(i.newsTitle,i.newsID)" >Share</div>
-                  </button>
-                </ion-col> 
+    <ion-card-content>
+      <p style="font-size:16px;" (click)="getNewsID(i.newsID,i.newsCategoryName,i.newsTitle,i.newsCategoryID)">{{i.newsTitle}}</p>
+    </ion-card-content>
 
-            </ion-row>
+    <ion-row>
+      <ion-col col-4>
+        <button ion-button icon-start clear small>
+          <ion-icon name="clock"></ion-icon>
+          <div>{{i.newsDate}}</div>
+        </button>
+      </ion-col>
+      <ion-col col-4 style="text-align: center;">
+        <button ion-button icon-start clear small>
+          <ion-icon name="text"></ion-icon>
+          <div>{{i.activecomments}}</div>
+        </button>
+      </ion-col>
 
-      </ion-card>
+      <ion-col col-4>
+        <button ion-button icon-start clear small>
+          <ion-icon name="share-alt"></ion-icon>
+          <div (click)="shareNews(i.newsTitle,i.newsID)">Share</div>
+        </button>
+      </ion-col>
 
-    <!-- <ion-card *ngFor="let i of jsonItems" >
+    </ion-row>
+
+  </ion-card>
+
+  <!-- <ion-card *ngFor="let i of jsonItems" >
         <img [src]="i.newsImage"/>
         <ion-card-content>
           <ion-card-title>
@@ -54,9 +57,9 @@
         </ion-card-content>
       </ion-card> -->
 
-      
 
-     <!-- <ion-list>
+
+  <!-- <ion-list>
        <ion-item *ngFor="let item of jsonItems" (click)="getNewsID(item.newsID)" >
          {{item.newsTitle}}
        </ion-item>

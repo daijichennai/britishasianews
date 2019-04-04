@@ -14,7 +14,7 @@
     <div *ngFor="let m of matchJson">
         <div class="tile">
             <div class="wrapper">
-                <h4 class="compTitle" text-center [innerHtml]="m.competition.cname"></h4>
+                <h4 class="compTitle colorPink" text-center [innerHtml]="m.competition.cname"></h4>
                 <div class="stats">
                     <div style="padding:10px;">
                         <strong>
@@ -34,7 +34,7 @@
             </strong> {{m.teams.away.fullname}}
                     </div>
                 </div>
-                <h4 class="compTitle ">Venue : {{m.venue.location}}</h4>
+                <h4 class="compTitle colorPink">Venue : {{m.venue.location}}</h4>
             </div>
         </div>
     </div>

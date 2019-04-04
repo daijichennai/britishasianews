@@ -31,7 +31,7 @@
       <div *ngFor="let r of recentJson">
         <div class="tile" (click)="goToScoreCard(r.mid)" >
           <div class="wrapper">
-            <h4 class="compTitle" text-center [innerHtml]="r.competition.cname" ></h4>
+            <h4 class="compTitle colorPink" text-center [innerHtml]="r.competition.cname" ></h4>
             <div class="stats">
               <div style="padding:10px;">
                 <strong>
@@ -53,7 +53,7 @@
                 {{r.teams.away.fullname}}
               </div>
             </div>
-            <h4 class="compTitle ">Venue : {{r.venue.location}}</h4>
+            <h4 class="compTitle colorPink">Venue : {{r.venue.location}}</h4>
           </div>
         </div>
       </div>   
@@ -68,7 +68,7 @@
       <div *ngFor="let u of upcomingJson">
         <div class="tile">
           <div class="wrapper">
-            <h4 class="compTitle" text-center [innerHtml]="u.competition.cname"></h4>
+            <h4 class="compTitle colorPink" text-center [innerHtml]="u.competition.cname"></h4>
             <div class="stats">
               <div style="padding:10px;">
                 <strong>
@@ -90,7 +90,7 @@
                 {{u.teams.away.fullname}}
               </div>
             </div>
-            <h4 class="compTitle ">Venue : {{u.venue.location}}</h4>
+            <h4 class="compTitle colorPink">Venue : {{u.venue.location}}</h4>
           </div>
         </div>
       </div>
@@ -104,9 +104,9 @@
         </h6>
       </div><br>
       <div *ngFor="let l of liveJson">
-        <div class="tile">
+        <div class="tile" (click)="goToScoreCard(l.mid)" >
           <div class="wrapper">
-            <h4 class="compTitle" text-center [innerHtml]="l.competition.cname"></h4>
+            <h4 class="compTitle colorPink" text-center [innerHtml]="l.competition.cname"></h4>
             <div class="stats">
               <div style="padding:10px;">
                 <strong>
@@ -128,7 +128,7 @@
                 {{l.teams.away.fullname}}
               </div>
             </div>
-            <h4 class="compTitle ">Venue : {{l.venue.location}}</h4>
+            <h4 class="compTitle colorPink">Venue : {{l.venue.location}}</h4>
           </div>
         </div>
       </div>

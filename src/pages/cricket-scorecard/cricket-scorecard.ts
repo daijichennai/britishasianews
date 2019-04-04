@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, LoadingController } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, LoadingController, MenuController } from 'ionic-angular';
 import { Observable } from 'rxjs/Observable';
 import { HttpClient } from '@angular/common/http';
 import { CommfuncProvider } from '../../providers/commfunc/commfunc';
@@ -22,7 +22,9 @@ export class CricketScorecardPage {
             public navParams: NavParams,
             public http: HttpClient,
             public loadingCtrl: LoadingController,
-            public myCommFun: CommfuncProvider
+            public myCommFun: CommfuncProvider,
+            public menuCtrl: MenuController
+
             ) {
     this.intMatchID = navParams.get('matchID');
     console.log(this.intMatchID);
@@ -30,7 +32,7 @@ export class CricketScorecardPage {
 
   ionViewDidLoad() {
     this.getScoreCardByID(this.intMatchID);
-    //this.getScoreCardByID(40294);
+    //this.getScoreCardByID(40295);
   }
 
   getScoreCardByID(matchID) {
@@ -62,15 +64,28 @@ export class CricketScorecardPage {
   getCommentaryByID(matchID, innings) {
     let data: Observable<any>;
     let url = '';
+    let loader = this.loadingCtrl.create({
+      content: 'Please wait...'
+    });
     url = "https://rest.entitysport.com/v2/matches/" + matchID + "/innings/" + innings + "/commentary?token=" + this.myCommFun.cricketTokenID;
-    data = this.http.get(url);    
+    data = this.http.get(url);  
+    loader.present().then(() => {  
     data.subscribe(result => {
-         this.entireCommentaryJson = result;
-        this.commentaryJson = result.response.commentaries;
-        console.log(result.response.commentaries);
+        //console.log(result.response.commentaries.reverse());
+        this.entireCommentaryJson = result;
+        this.commentaryJson = result.response.commentaries.reverse();
+        loader.dismiss();
+        
       },error =>{
+        loader.dismiss();
         console.log('Error occured in Cricket Commentary');
       });    
+    });
+  }
+
+
+  toggleMenu() {
+    this.menuCtrl.toggle();
   }
 
   chkUndefined(ball, event, over) {
