@@ -14,7 +14,7 @@ export class CricketScorecardPage {
   public intMatchID :number=0;
   public scoreCardJson:any;
   public commentaryJson:any;
-  public inningsNumber:string;
+  public inningsNumber:number =0;
   public entireCommentaryJson:any;
 
   constructor(
@@ -49,11 +49,16 @@ export class CricketScorecardPage {
           this.inningsNumber = result.response.innings.reverse()[1].number;
         }else if (result.response.innings.reverse()[0].number) {
           this.inningsNumber = result.response.innings.reverse()[0].number;
+        }else{
+          this.inningsNumber = 0;
         }
         this.getCommentaryByID(matchID,this.inningsNumber); 
         this.scoreCardJson = result.response.innings;
         console.log(result.response.innings.reverse());
         loader.dismiss();
+        setInterval(()=>{
+          loader.dismiss();
+        },5000);
       },
       error=>{
         loader.dismiss();

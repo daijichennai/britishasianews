@@ -13,7 +13,6 @@ import { SplashScreen } from '@ionic-native/splash-screen';
 import { HttpClientModule } from '@angular/common/http';
 import { DisplayNewsPage } from '../pages/display-news/display-news';
 import { PropertyDisplayPage } from "../pages/property-display/property-display";
-import { CommentsPage } from "../pages/comments/comments";
 import { SocialSharing } from "@ionic-native/social-sharing";
 import { Network } from "@ionic-native/network";
 import { NetworkProvider } from '../providers/network/network';
@@ -29,7 +28,6 @@ import { CommfuncProvider } from '../providers/commfunc/commfunc';
     HomePage,
     ListPage,
     DisplayNewsPage,
-    CommentsPage,
     MatrimonialPage,
     MatrimonialDisplayPage,
     PropertyPage,
@@ -48,7 +46,6 @@ import { CommfuncProvider } from '../providers/commfunc/commfunc';
     HomePage,
     ListPage,
     DisplayNewsPage,
-    CommentsPage,
     MatrimonialPage,
     MatrimonialDisplayPage,
     PropertyPage,

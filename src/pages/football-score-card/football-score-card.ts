@@ -17,7 +17,7 @@ export class FootballScoreCardPage {
   public commentaryJson :any;
   public homeLineUps:any;
   public awayLineUps: any;
-
+  public referee: string="";
   public homeSubstitutes : any;
   public awaySubstitutes: any;
   public matchStatsJson :any;
@@ -61,6 +61,7 @@ export class FootballScoreCardPage {
         this.awaySubstitutes = result.response.items.lineup.away.substitutes;
         this.commentaryJson = result.response.items.commentary.reverse();
         console.log(result.response.items);
+        this.referee = result.response.items.referee[0].fullname;
         loader.dismiss();
       },error =>{
         loader.dismiss();

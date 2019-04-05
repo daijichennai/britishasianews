@@ -15,6 +15,7 @@
         <div class="tile">
             <div class="wrapper">
                 <h4 class="compTitle colorPink" text-center [innerHtml]="m.competition.cname"></h4>
+                <span style="padding-left:80px;"><b>{{myCommFun.getDateTimeHoursMin(m.datestart)}}</b></span>
                 <div class="stats">
                     <div style="padding:10px;">
                         <strong>
@@ -96,10 +97,8 @@
                                         {{al.pname}}
                                     </td>
                                 </tr>
-                            </table>
-    
-                        </ion-col>
-    
+                            </table>    
+                        </ion-col>    
                     </ion-row>
                 </ion-grid>
     
@@ -143,11 +142,13 @@
                                         {{awaySub.pname}}
                                     </td>
                                 </tr>
-                            </table>
-    
+                            </table>    
                         </ion-col>
-    
-    
+                    </ion-row>
+                    <ion-row>
+                        <ion-col text-center>
+                            <b>Referee : {{referee}}</b>
+                        </ion-col>
                     </ion-row>
                 </ion-grid>
     

@@ -2,7 +2,6 @@ import { Component } from '@angular/core';
 import { NavController, LoadingController, ToastController, Platform } from 'ionic-angular';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs/Observable';
-
 import { DisplayNewsPage } from '../display-news/display-news';
 import { ListPage } from '../list/list';
 import { Subscription } from '../../../node_modules/rxjs/Subscription';
@@ -28,7 +27,7 @@ export class HomePage {
               public socialSharing : SocialSharing,
               public network:Network,
               public toast :ToastController,
-    public myCommFun: CommfuncProvider
+              public myCommFun: CommfuncProvider
             
             ) { 
     this.domainName = this.myCommFun.domainName;

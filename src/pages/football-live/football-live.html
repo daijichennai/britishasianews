@@ -24,7 +24,7 @@
  <div [ngSwitch]="tabs">
     <ion-list *ngSwitchCase="'recentMatch'">
       <div *ngIf="isHideRecentMatch"><br>
-        <h6 style="color:red;text-align: center;">
+        <h6  class="colorRed" text-center>
           No Recent Match Available
         </h6>
       </div><br>      
@@ -32,6 +32,8 @@
         <div class="tile" (click)="goToScoreCard(r.mid)" >
           <div class="wrapper">
             <h4 class="compTitle colorPink" text-center [innerHtml]="r.competition.cname" ></h4>
+            <span style="padding-left:80px;" ><b>{{myCommFun.getDateTimeHoursMin(r.datestart)}}</b></span>
+            
             <div class="stats">
               <div style="padding:10px;">
                 <strong>
@@ -61,14 +63,15 @@
 
     <ion-list *ngSwitchCase="'upcomingMatch'">
       <div *ngIf="isHideUpcomingMatch"><br>
-        <h6 style="color:red;text-align: center;">
+        <h6 class="colorRed" style="text-align: center;">
           No Upcoming Match Available
         </h6>
       </div><br>
       <div *ngFor="let u of upcomingJson">
         <div class="tile">
           <div class="wrapper">
-            <h4 class="compTitle colorPink" text-center [innerHtml]="u.competition.cname"></h4>
+            <h4 class="compTitle colorPink" text-center [innerHtml]="u.competition.cname"></h4> 
+            <span style="padding-left:80px;" ><b>{{myCommFun.getDateTimeHoursMin(u.datestart)}}</b></span>
             <div class="stats">
               <div style="padding:10px;">
                 <strong>
@@ -99,14 +102,15 @@
     <ion-list *ngSwitchCase="'liveMatch'">
       <div *ngIf="isHideLiveMatch">
         <br>
-        <h6 style="color:red;text-align: center;">
+        <h6 class="colorRed" text-center>
           No Live Match Available
         </h6>
       </div><br>
       <div *ngFor="let l of liveJson">
         <div class="tile" (click)="goToScoreCard(l.mid)" >
           <div class="wrapper">
-            <h4 class="compTitle colorPink" text-center [innerHtml]="l.competition.cname"></h4>
+            <h4 class="compTitle colorPink" [innerHtml]="l.competition.cname"></h4> 
+            <span style="padding-left:80px;" ><b>{{myCommFun.getDateTimeHoursMin(l.datestart)}}</b></span>
             <div class="stats">
               <div style="padding:10px;">
                 <strong>

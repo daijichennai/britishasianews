@@ -32,7 +32,7 @@ export class CompetitiondisplayPage {
       this.domainName = this.myCommFun.domainName;
       this.intCID = navParams.get('cID');
       this.competitionMode = navParams.get('competitionMode');
-    this.strNewsCat = navParams.get('newsCatCode');
+      this.strNewsCat = navParams.get('newsCatCode');
       this.toolBarName = this.getToolbarName(this.competitionMode);
   }
 
@@ -43,6 +43,7 @@ export class CompetitiondisplayPage {
       this.getIPLStandings();
     }else{
       this.getPointByID(this.intCID, this.competitionMode);
+      //this.getPointByID(3, 'premierLeague');
     }
   }
 

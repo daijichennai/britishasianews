@@ -4,6 +4,7 @@ import { Observable } from 'rxjs/Observable';
 import { HttpClient } from '@angular/common/http';
 import { DisplayNewsPage } from '../display-news/display-news';
 import { SocialSharing } from "@ionic-native/social-sharing";
+import { CommfuncProvider } from '../../providers/commfunc/commfunc';
 @Component({
   selector: 'page-list',
   templateUrl: 'list.html'
@@ -17,14 +18,19 @@ export class ListPage {
   public listOfNewsInfinite : any;
   public domainName : string = "";
 
-  constructor(public navCtrl: NavController, public navParams: NavParams,public http : HttpClient,public loadingCtrl : LoadingController,public socialSharing : SocialSharing,) {
+  constructor(public navCtrl: NavController,
+     public navParams: NavParams,
+     public http : HttpClient,
+     public loadingCtrl : LoadingController,
+     public socialSharing : SocialSharing,
+    public myCommFun: CommfuncProvider) {
     //alert(navParams.)
     //alert(navParams.get('newsCatCode'));
     this.strNewsCatName = this.changeNewCatName(navParams.get('newsCatName'));
     this.strNewsCatCode = navParams.get('newsCatCode');
-    let newsID = 0
-    //this.domainName = "http://192.168.1.2/britAsiaNews/"
-    this.domainName = "https://www.britishasianews.com/"
+    let newsID = 0;
+    
+    this.domainName = this.myCommFun.domainName;
     if (navParams.get('newsID') == undefined){
       newsID = 0
     }else{

@@ -18,43 +18,43 @@
           <h1 text-center>{{i.tname}}</h1>
         </ion-item>
   
-        <img  style="width:160px;height:160px;" [src]="i.logo">
+        <img  style="width:160px;height:160px; margin: auto; padding: 10px;" [src]="i.logo">
   
         <div padding-left padding-right>
           <table width="100%">
             <tr>
-              <td>Played</td>
-              <td>{{i.playedtotal}}</td>
+              <td class="colorPink" >Played</td>
+              <td><b>{{i.playedtotal}}</b></td>
               <td>&nbsp;</td>
-              <td>Won</td>
-              <td>{{i.wintotal}}</td>
+              <td class="colorPink">Won</td>
+              <td><b>{{i.wintotal}}</b></td>
             </tr>
   
             <tr>
-              <td>Lost</td>
-              <td>{{i.losstotal}}</td>
+              <td class="colorPink">Lost</td>
+              <td><b>{{i.losstotal}}</b></td>
   
               <td>&nbsp;</td>
-              <td>Drawn</td>
-              <td>{{i.drawtotal}}</td>
+              <td class="colorPink">Drawn</td>
+              <td><b>{{i.drawtotal}}</b></td>
             </tr>
   
             <tr>
-              <td>Goal For</td>
-              <td>{{i.goalsfortotal}}</td>
+              <td class="colorPink">Goal For</td>
+              <td><b>{{i.goalsfortotal}}</b></td>
   
               <td>&nbsp;</td>
-              <td>Goal Against</td>
-              <td>{{i.goalsagainsttotal}}</td>
+              <td class="colorPink">Goal Against</td>
+              <td><b>{{i.goalsagainsttotal}}</b></td>
             </tr>
   
             <tr>
-              <td>Goal GD</td>
-              <td>{{i.goaldifftotal}}</td>
+              <td class="colorPink">Goal GD</td>
+              <td><b>{{i.goaldifftotal}}</b></td>
   
               <td>&nbsp;</td>
-              <td>Points</td>
-              <td>{{i.pointstotal}}</td>
+              <td class="colorPink">Points</td>
+              <td><b>{{i.pointstotal}}</b></td>
             </tr>
   
           </table>

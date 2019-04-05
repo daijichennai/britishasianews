@@ -3,7 +3,7 @@ import {  NavController, NavParams ,LoadingController } from 'ionic-angular';
 import { Observable } from 'rxjs/Observable';
 import { HttpClient } from '@angular/common/http';
 import { SocialSharing } from "@ionic-native/social-sharing";
-import { CommentsPage } from '../comments/comments';
+import { CommfuncProvider } from '../../providers/commfunc/commfunc';
 
 @Component({
   selector: 'page-display-news',
@@ -21,13 +21,21 @@ export class DisplayNewsPage {
   public domainName :string = "";
   public myDate : Date = new Date();
   public hideShow: boolean = false;
-  constructor(public navCtrl: NavController, public navParams: NavParams,public http : HttpClient,public socialSharing : SocialSharing,public loadingCtrl : LoadingController) {
+  constructor(
+              public navCtrl: NavController,
+              public navParams: NavParams,
+              public http : HttpClient,
+              public socialSharing : SocialSharing,
+              public loadingCtrl : LoadingController,
+              public myCommFun: CommfuncProvider,
+    ) {
+
     this.intNewsID = navParams.get('newsID');
     this.newsCategoryName = navParams.get('newsCategoryName');
     this.newsTitle = navParams.get('newsTitle');
     this.intNewsCategoryID = navParams.get('newsCatID');
-    //this.domainName = "http://192.168.1.2/britAsiaNews/"
-    this.domainName = "https://www.britishasianews.com/"
+    
+    this.domainName = this.myCommFun.domainName 
 
     //alert(this.intNewsID);
     
@@ -63,7 +71,7 @@ export class DisplayNewsPage {
  
   shareNews(){
     //alert(this.newsID);
-    let shareLink = "https://www.britishasianews.com/news/newsDisplay.aspx?newsID=" + this.intNewsID;
+    let shareLink = this.domainName + "news/newsDisplay.aspx?newsID=" + this.intNewsID;
     this.socialSharing.share(this.newsTitle, null, null, shareLink).then(() => {
         console.log('success');
     }).catch(()=>{
@@ -83,7 +91,7 @@ export class DisplayNewsPage {
   }
 
   emailComment(){
-    this.navCtrl.push(CommentsPage,{
+    this.navCtrl.push('CommentsPage',{
       newsID :  this.intNewsID,
       newsCatID : this.intNewsCategoryID,
       newsTitle : this.newsTitle
@@ -94,7 +102,7 @@ export class DisplayNewsPage {
 
   replyFn(replyReportAbuseMode : string,ecID : number){
     //alert(ecID);
-    this.navCtrl.push(CommentsPage,{
+    this.navCtrl.push('CommentsPage',{
       newsID :  this.intNewsID,
       newsCatID : this.intNewsCategoryID,
       newsTitle : this.newsTitle,
