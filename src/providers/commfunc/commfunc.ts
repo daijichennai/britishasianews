@@ -33,4 +33,26 @@ export class CommfuncProvider {
     return year + ' ' + monthNames[month] + ' ' + day + ' ' + strTime + ' (UK)';
   }
 
+  convToIST(myDate) {
+    var dateUTC = new Date(myDate);
+    var ISTOffset = 330;   // IST offset UTC +5:30 
+    var ISTTime = new Date(dateUTC.getTime() + (ISTOffset) * 60000);
+    var hoursIST = ISTTime.getHours()
+    var minutesIST: any = ISTTime.getMinutes()
+    if (minutesIST === "0") {
+      minutesIST = "00"
+    }
+    var ISTNow = hoursIST + ":" + minutesIST
+    return ISTNow;
+  }
+
+  convertDate(dateValue) {
+    var d = new Date(dateValue);
+    var monthNames = ["Jan", "Feb", "Mar", "Apl", "May", "June", "July", "Aug", "Sept", "Oct", "Nov", "Dec"];
+    var day = d.getDate();
+    var monthIndex = d.getMonth();
+    var year = d.getFullYear();
+    return day + ' ' + monthNames[monthIndex] + ' ' + year;
+  }
+
 }

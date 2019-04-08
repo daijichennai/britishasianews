@@ -23,6 +23,7 @@
 <div [ngSwitch]="tabs">
   <ion-list *ngSwitchCase="'scorecard'">
     <br>
+    <div>
   <div *ngFor="let sc of scoreCardJson"  >
     <table class="tbl">
       <tr>
@@ -38,7 +39,7 @@
           <th text-center>SR</th>
       </tr>
       <tr *ngFor="let batsmen of sc.batsmen">
-          <td><span class="colorPink" >{{batsmen.name}}</span> <br>{{batsmen.how_out}}</td>
+          <td style="width:45%" ><span class="colorPink" >{{batsmen.name}}</span> <br>{{batsmen.how_out}}</td>
           <td text-center>{{batsmen.runs }}</td>
           <td text-center>{{batsmen.balls_faced }}</td>
           <td text-center>{{batsmen.fours}} </td>
@@ -51,6 +52,14 @@
           <b>{{sc.equations.runs}} ( {{sc.equations.wickets}} wkts, {{sc.equations.overs}} Overs )</b>
         </td>
       </tr> 
+      <tr>
+        <td><b>Did Not Bat</b></td>
+        <td colspan="5" text-left text-justify >
+            <div *ngFor="let dnb of sc.did_not_bat"  >
+              {{dnb.name}}, 
+            </div>
+        </td>
+      </tr>
     </table>
     <br>
     <table width="100%" style="border:1px solid #ddd;" >
@@ -91,6 +100,48 @@
         </tr>
       </table>
       <br>
+            
+  </div>
+          <table class="tbl" *ngIf="isHideMatchInfo"  >
+              <tr>
+                <th text-center colspan='2'>Match Info</th>
+              </tr>
+            
+              <tr>
+                <td>Match</td>
+                <td>{{matchTitle}},  {{subtitle}}  </td>
+              </tr>
+            
+              <tr>
+                <td>Date</td>
+                <td>{{convertDate(date_start)}}  </td>
+              </tr>
+            
+              <tr>
+                <td>Toss</td>
+                <td>{{toss}}  </td>
+              </tr>
+            
+              <tr>
+                <td>Time</td>
+                <td>{{convToIST(date_start)}}  (IST) </td>
+              </tr>
+            
+              <tr>
+                <td>Venue</td>
+                <td>{{venue}}, {{location}}  </td>
+              </tr>
+            
+              <tr>
+                <td>Umpires</td>
+                <td>{{umpires}}  </td>
+              </tr>
+            
+              <tr>
+                <td>Referee</td>
+                <td>{{referee}}</td>
+              </tr>
+            </table>
   </div>
   </ion-list>
 

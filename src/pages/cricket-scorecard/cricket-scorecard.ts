@@ -16,6 +16,15 @@ export class CricketScorecardPage {
   public commentaryJson:any;
   public inningsNumber:number =0;
   public entireCommentaryJson:any;
+  public matchTitle :string;
+  public subtitle: string;
+  public date_start: string;
+  public toss: string;
+  public venue: string;
+  public location: string;
+  public umpires: string;
+  public referee: string;
+  public isHideMatchInfo:boolean= false;
 
   constructor(
             public navCtrl: NavController,
@@ -45,6 +54,15 @@ export class CricketScorecardPage {
     data = this.http.get(url);
     loader.present().then(() => {
       data.subscribe(result => {
+        this.matchTitle = result.response.title;
+        this.subtitle = result.response.subtitle;
+        this.date_start= result.response.date_start;
+        this.toss = result.response.toss.text;
+        this.venue = result.response.venue.name
+        this.location = result.response.venue.location;
+        this.umpires = result.response.umpires;
+        this.referee = result.response.referee;
+        this.isHideMatchInfo = true;
         if (result.response.innings.reverse()[1].number){
           this.inningsNumber = result.response.innings.reverse()[1].number;
         }else if (result.response.innings.reverse()[0].number) {
@@ -69,23 +87,23 @@ export class CricketScorecardPage {
   getCommentaryByID(matchID, innings) {
     let data: Observable<any>;
     let url = '';
-    let loader = this.loadingCtrl.create({
-      content: 'Please wait...'
-    });
+    // let loader = this.loadingCtrl.create({
+    //   content: 'Please wait...'
+    // });
     url = "https://rest.entitysport.com/v2/matches/" + matchID + "/innings/" + innings + "/commentary?token=" + this.myCommFun.cricketTokenID;
     data = this.http.get(url);  
-    loader.present().then(() => {  
+    //loader.present().then(() => {  
     data.subscribe(result => {
         //console.log(result.response.commentaries.reverse());
         this.entireCommentaryJson = result;
         this.commentaryJson = result.response.commentaries.reverse();
-        loader.dismiss();
+        //loader.dismiss();
         
       },error =>{
-        loader.dismiss();
+       // loader.dismiss();
         console.log('Error occured in Cricket Commentary');
       });    
-    });
+   // });
   }
 
 
@@ -123,6 +141,28 @@ export class CricketScorecardPage {
     } else {
       return commentary;
     }
+  }
+
+  convertDate(dateValue) {
+    var d = new Date(dateValue);
+    var monthNames = ["Jan", "Feb", "Mar", "Apl", "May", "June", "July", "Aug", "Sept", "Oct", "Nov", "Dec"];
+    var day = d.getDate();
+    var monthIndex = d.getMonth();
+    var year = d.getFullYear();
+    return day + ' ' + monthNames[monthIndex] + ' ' + year;
+  }
+
+  convToIST(myDate) {
+    var dateUTC = new Date(myDate);
+    var ISTOffset = 330;   // IST offset UTC +5:30 
+    var ISTTime = new Date(dateUTC.getTime() + (ISTOffset) * 60000);
+    var hoursIST = ISTTime.getHours()
+    var minutesIST: any = ISTTime.getMinutes()
+    if (minutesIST === "0") {
+      minutesIST = "00"
+    }
+    var ISTNow = hoursIST + ":" + minutesIST
+    return ISTNow;
   }
 
 }
