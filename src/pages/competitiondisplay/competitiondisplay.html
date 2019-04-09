@@ -1,9 +1,10 @@
 <ion-header>
-
   <ion-navbar color="primary">
-    <button ion-button menuToggle (click)="toggleMenu();">
-      <ion-icon name="menu"></ion-icon>
-    </button>
+    <ion-buttons end>
+      <button ion-button icon-only color="royal" (click)="toggleMenu();">
+        <ion-icon name="menu"></ion-icon>
+      </button>
+    </ion-buttons>
     <ion-title>{{toolBarName}}</ion-title>
   </ion-navbar>
 
@@ -82,7 +83,7 @@
        
         <tr *ngFor="let g of i.tables" style="border-bottom: 1px solid #eeeeee;">
           <td>{{g.tname}}</td>
-          <td text-center><img style="vertical-align: middle;" [src]="g.logo" height="25" width="25" ></td>
+          <td text-center><img style="vertical-align: middle;" [src]="g.logo" style="width: 25px;height: 25px;"  ></td>
           <td text-center>{{g.playedtotal}}</td>
           <td text-center>{{g.wintotal}}</td>
           <td text-center>{{g.drawtotal}}</td>
@@ -109,7 +110,7 @@
         <th text-center>NRR</th>
       </tr>
       <tr *ngFor="let ipl of iplJson" style="border-bottom: 1px solid #eeeeee;"  >
-        <img height="25" width="25" [src]="iplLogo(ipl.team.title)" />
+        <img style="width: 25px;height: 25px;" [src]="iplLogo(ipl.team.title)" />
         <td>{{ipl.team.abbr}}</td>
         <td text-center>{{ipl.played}}</td>
         <td text-center>{{ipl.win}}</td>
