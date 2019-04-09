@@ -33,40 +33,32 @@ export class DisplayNewsPage {
     this.intNewsID = navParams.get('newsID');
     this.newsCategoryName = navParams.get('newsCategoryName');
     this.newsTitle = navParams.get('newsTitle');
-    this.intNewsCategoryID = navParams.get('newsCatID');
-    
-    this.domainName = this.myCommFun.domainName 
-
-    //alert(this.intNewsID);
-    
+    this.intNewsCategoryID = navParams.get('newsCatID');    
+    this.domainName = this.myCommFun.domainName;    
     this.newsDisplayByID(this.intNewsID);
     this.displayEmailCommentsByNewsID(this.intNewsID);
- 
-
   }
 
-  newsDisplayByID(newsID:number) {
-    let data:Observable<any>;
-    
+  newsDisplayByID(newsID: number) {
+    let data: Observable<any>;
     let url = this.domainName + "handlers/newsMaster.ashx?newsMode=displayNews&newsID=" + newsID;
-
     let loader = this.loadingCtrl.create({
       content: 'Please wait...'
     });
-    loader.present().then(()=>{
-    data = this.http.get(url);
-    data.subscribe(result =>{
-      this.singleNewsData = result;
-
-      if (result[0].activecomments===0){
-        this.hideShow = false;
-      }else{
-        this.hideShow = true;
-      }
-
-      loader.dismiss();
-    })
-  });
+    loader.present().then(() => {
+      data = this.http.get(url);
+      data.subscribe(result => {
+        this.singleNewsData = result;
+        if (result[0].activecomments === 0) {
+          this.hideShow = false;
+        } else {
+          this.hideShow = true;
+        }
+        loader.dismiss();
+      }, error => {
+        loader.dismiss();
+      })
+    });
   }
  
   shareNews(){
@@ -81,8 +73,7 @@ export class DisplayNewsPage {
 
 
   displayEmailCommentsByNewsID(newsID:number){
-    let newsComment:Observable<any>;
-    
+    let newsComment:Observable<any>;    
     let url = this.domainName + "handlers/androidEmailComments.ashx?mode=dispComment&newsID=" + newsID;
     newsComment = this.http.get(url);
     newsComment.subscribe(commentResult =>{
@@ -95,7 +86,6 @@ export class DisplayNewsPage {
       newsID :  this.intNewsID,
       newsCatID : this.intNewsCategoryID,
       newsTitle : this.newsTitle
-
     });
 
   }
@@ -108,45 +98,27 @@ export class DisplayNewsPage {
       newsTitle : this.newsTitle,
       ecID : ecID,
       replyMode : replyReportAbuseMode
-
     });
   }
 
-  agreeDisAgreeFn(agreeMode, ecID){
-    let agreeDisagreeURL =  this.domainName + "handlers/emailCommentsAgreeDisagree.ashx?ecID=" + ecID + "&agreeDisagree=" + agreeMode;  
+  agreeDisAgreeFn(agreeMode, ecID) {
+    let agreeDisagreeURL = this.domainName + "handlers/emailCommentsAgreeDisagree.ashx?ecID=" + ecID + "&agreeDisagree=" + agreeMode;
     this.http.post(agreeDisagreeURL, "").subscribe(
-            data => { 
+      data => {
 
-              if(data[0].agreeMode ==="agree"){
-                document.getElementById('upAgreeValue'+ecID).innerHTML = "&nbsp;" + data[0].count;
-              }else if (data[0].agreeMode ==="disagree"){
-                document.getElementById('upDisagreeValue'+ecID).innerHTML = "&nbsp;" + data[0].count;
-              }
-              //console.log(data[0].agreeMode);
-              //console.log(data[0].count);
-            },
-            error => {
-              console.log(error);
-          });
-
-
+        if (data[0].agreeMode === "agree") {
+          document.getElementById('upAgreeValue' + ecID).innerHTML = "&nbsp;" + data[0].count;
+        } else if (data[0].agreeMode === "disagree") {
+          document.getElementById('upDisagreeValue' + ecID).innerHTML = "&nbsp;" + data[0].count;
+        }
+        //console.log(data[0].agreeMode);
+        //console.log(data[0].count);
+      },
+      error => {
+        console.log(error);
+      });
   }
 
-
-//   commentsLevel(ecDotsLevel){
-//       if (ecDotsLevel === 0) {
-//             return "ecDiv0";
-//         }
-//         else if (ecDotsLevel === 1) {
-//           return "ecDiv1";
-//         }
-//         else if (ecDotsLevel === 2) {
-//           return "ecDiv2";
-//         }
-//         else if (ecDotsLevel === 3) {
-//           return "ecDiv3";
-//         }
-// }
   commentsLevel(ecDotsLevel){
       if (ecDotsLevel === 0) {
             return "comments-list1";

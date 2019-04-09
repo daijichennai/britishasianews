@@ -24,6 +24,12 @@
   <ion-list *ngSwitchCase="'scorecard'">
     <br>
     <div>
+      <div text-center >
+        <span class="colorPink" ><b>{{matchStatus}}</b></span><br>
+        <span class="colorPink" *ngIf="isManOfTheMatch">
+          <b>MAN OF THE MATCH : {{manOfTheMatch.toUpperCase()}}</b><br>
+        </span>
+      </div>
   <div *ngFor="let sc of scoreCardJson"  >
     <table class="tbl">
       <tr>
@@ -108,7 +114,7 @@
               </tr>
             
               <tr>
-                <td>Match</td>
+                <td style="width:30%" >Match</td>
                 <td>{{matchTitle}},  {{subtitle}}  </td>
               </tr>
             
@@ -140,6 +146,60 @@
               <tr>
                 <td>Referee</td>
                 <td>{{referee}}</td>
+              </tr>
+              <tr>
+                <td colspan="2" text-center><b class="colorPink">{{teamAName}}</b></td>
+              </tr>
+              <tr>
+                <td>Playing XI</td>
+                <td>
+                  <ul class="ulClass" >
+                    <li class="liClass" *ngFor="let sqad of squadTeamAJson">
+                      <div *ngIf="sqad.playing11 =='true'"  >
+                          {{sqad.name}}{{sqad.role_str}}, 
+                      </div>
+                    </li>
+                  </ul>
+                </td>
+              </tr>
+              <tr>
+                <td>Bench</td>
+                <td>
+                  <ul class="ulClass">
+                    <li class="liClass" *ngFor="let sqad of squadTeamAJson">
+                      <div *ngIf="sqad.playing11 =='false'">
+                        {{sqad.name}}{{sqad.role_str}},
+                      </div>
+                    </li>
+                  </ul>
+                </td>
+              </tr>
+              <tr>
+                <td colspan="2" text-center><b class="colorPink" >{{teamBName}}</b></td>
+              </tr>
+              <tr>
+                <td>Playing XI</td>
+                <td>
+                  <ul class="ulClass">
+                    <li class="liClass" *ngFor="let sqad of squadTeamBJson">
+                      <div *ngIf="sqad.playing11 =='true'">
+                        {{sqad.name}}{{sqad.role_str}},
+                      </div>
+                    </li>
+                  </ul>
+                </td>
+              </tr>
+              <tr>
+                <td>Bench</td>
+                <td>
+                  <ul class="ulClass">
+                    <li class="liClass" *ngFor="let sqad of squadTeamBJson">
+                      <div *ngIf="sqad.playing11 =='false'">
+                        {{sqad.name}}{{sqad.role_str}},
+                      </div>
+                    </li>
+                  </ul>
+                </td>
               </tr>
             </table>
   </div>

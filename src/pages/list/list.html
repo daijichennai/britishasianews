@@ -30,7 +30,9 @@
     [scrollObservable]="container.ionScroll" />
     <!-- <img [src]="i.newsImage" (click)="getNewsID(i.newsID,i.newsCategoryName,i.newsTitle,i.newsCategoryID)"> -->
     <ion-card-content>
-      <p (click)="getNewsID(i.newsID,i.newsCategoryName,i.newsTitle,i.newsCategoryID)">{{i.newsTitle}}</p>
+      <p (click)="getNewsID(i.newsID,i.newsCategoryName,i.newsTitle,i.newsCategoryID)">{{i.newsTitle}}
+        <span class="colorPink" *ngIf="strNewsCatCode ==='featured'  && i.authorName !='' "  > - {{i.authorName}}</span>
+      </p>
     </ion-card-content>
   
     <ion-row>

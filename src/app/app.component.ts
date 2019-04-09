@@ -58,7 +58,7 @@ export class MyApp {
       { title: 'Sri Lanka', component: ListPage,icon:'globe',newsCatCode :'srilanka'  },
       { title: 'World', component: ListPage,icon:'globe' ,newsCatCode :'world'},
       { title: 'Special', component: ListPage,icon:'globe' ,newsCatCode :'special'},
-      { title: 'Featured', component: ListPage, icon: 'checkmark-circle', newsCatCode: 'featured' },
+      { title: 'Exclusive', component: ListPage, icon: 'checkmark-circle', newsCatCode: 'featured' },
       { title: 'Bollywood', component: ListPage,icon:'globe'  ,newsCatCode :'bollywood'},
       { title: 'Sports - Football', component: ListPage, icon: 'football', newsCatCode: 'football' },
       { title: 'Football - <b class="colorRed">Live</b>', component: 'FootballLivePage', icon: 'football', newsCatCode: 'football' },

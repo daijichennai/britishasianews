@@ -20,7 +20,11 @@
 
 
     <ion-card-content>
-      <p style="font-size:16px;" (click)="getNewsID(i.newsID,i.newsCategoryName,i.newsTitle,i.newsCategoryID)">{{i.newsTitle}}</p>
+      <p style="font-size:16px;" (click)="getNewsID(i.newsID,i.newsCategoryName,i.newsTitle,i.newsCategoryID)">{{i.newsTitle}}
+        <span class="colorPink" *ngIf="i.newsCategoryCode ==='featured'  && i.authorName !='' ">
+          - {{i.authorName}}
+        </span>
+      </p>
     </ion-card-content>
 
     <ion-row>
