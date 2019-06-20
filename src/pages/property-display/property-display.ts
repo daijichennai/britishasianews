@@ -1,8 +1,9 @@
 import { Component } from '@angular/core';
-import {  NavController, NavParams, LoadingController} from 'ionic-angular';
+import { IonicPage, NavController, NavParams, LoadingController} from 'ionic-angular';
 import { Observable } from 'rxjs/Observable';
 import { HttpClient } from '@angular/common/http'; 
-
+import { CommfuncProvider } from '../../providers/commfunc/commfunc';
+@IonicPage()
 @Component({
   selector: 'page-property-display',
   templateUrl: 'property-display.html',
@@ -15,12 +16,12 @@ export class PropertyDisplayPage {
   constructor(public navCtrl: NavController, 
               public navParams: NavParams,
               public http: HttpClient, 
-              public loadingCtrl: LoadingController
+              public loadingCtrl: LoadingController,
+              public myCommFun: CommfuncProvider,
             ) {
         
             this.intProperty = navParams.get('propertyID');
-           //this.domainName = "http://192.168.1.2/britAsiaNews/"
-    this.domainName = "https://www.britishasianews.com/"
+           this.domainName = this.myCommFun.domainName;
 
             this.DisplayPropertyByID(this.intProperty);
       }

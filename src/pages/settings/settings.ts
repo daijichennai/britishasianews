@@ -1,7 +1,8 @@
 import { Component } from '@angular/core';
-import {  NavController, NavParams } from 'ionic-angular';
+import { IonicPage,  NavController, NavParams } from 'ionic-angular';
 import { HttpClient } from '@angular/common/http';
-
+import { CommfuncProvider } from '../../providers/commfunc/commfunc';
+@IonicPage()
 @Component({
   selector: 'page-settings',
   templateUrl: 'settings.html',
@@ -14,10 +15,12 @@ export class SettingsPage {
 
   constructor(public navCtrl: NavController, 
               public navParams: NavParams,
-              public http: HttpClient) {
+              public http: HttpClient,
+              public myCommFun: CommfuncProvider
+            ) {
 
     //this.domainName = "http://192.168.1.2/britAsiaNews/"
-    this.domainName = "https://www.britishasianews.com/"
+    this.domainName = this.myCommFun.domainName; // "https://www.britishasianews.com/"
     if ((window.localStorage.getItem("token") == null) || (window.localStorage.getItem("token") == undefined)) {
       this.tokenID = "";
     }

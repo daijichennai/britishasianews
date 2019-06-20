@@ -3,18 +3,14 @@ import { Nav, Platform, ToastController,Events ,App ,AlertController} from 'ioni
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { Network } from "@ionic-native/network";
-import { HomePage } from '../pages/home/home';
-import { ListPage } from '../pages/list/list';
-import { MatrimonialPage } from "../pages/matrimonial/matrimonial";
-import { PropertyPage } from "../pages/property/property";
+//import { MatrimonialPage } from "../pages/matrimonial/matrimonial";
 import { Subscription } from '../../node_modules/rxjs/Subscription';
 import { NetworkProvider } from '../providers/network/network';
 import { Firebase } from '@ionic-native/firebase';
 import { HttpClient } from '@angular/common/http';
 import { DisplayNewsPage } from '../pages/display-news/display-news';
-import { SettingsPage } from '../pages/settings/settings'
 import { CommfuncProvider } from '../providers/commfunc/commfunc';
-
+import { Observable } from 'rxjs/Observable';
 
 @Component({
   templateUrl: 'app.html'
@@ -22,7 +18,7 @@ import { CommfuncProvider } from '../providers/commfunc/commfunc';
 export class MyApp {
   @ViewChild(Nav) nav: Nav;
 
-  rootPage: any = HomePage;
+  rootPage: any = 'HomePage';
   toastInstance :any; 
   connected: Subscription;
   disconnected: Subscription;
@@ -43,50 +39,45 @@ export class MyApp {
       public fireBase : Firebase,
       public myCommFun: CommfuncProvider
     ) {
-
     this.domainName = this.myCommFun.domainName;
-
-    this.initializeApp();   
-    
+    this.initializeApp();    
     // used for an example of ngFor and navigation
-    this.pages = [
-      { title: 'Home', component: HomePage,icon:'home' ,newsCatCode :'home' },
-      { title: 'UK', component: ListPage,icon:'globe' ,newsCatCode :'uk' },
-      { title: 'India', component: ListPage,icon:'globe' ,newsCatCode :'india'},
-      { title: 'Pakistan', component: ListPage,icon:'globe' ,newsCatCode :'pakistan' },
-      { title: 'Bangladesh', component: ListPage,icon:'globe' ,newsCatCode :'bangladesh' },
-      { title: 'Sri Lanka', component: ListPage,icon:'globe',newsCatCode :'srilanka'  },
-      { title: 'World', component: ListPage,icon:'globe' ,newsCatCode :'world'},
-      { title: 'Special', component: ListPage,icon:'globe' ,newsCatCode :'special'},
-      { title: 'Exclusive', component: ListPage, icon: 'checkmark-circle', newsCatCode: 'featured' },
-      { title: 'Bollywood', component: ListPage,icon:'globe'  ,newsCatCode :'bollywood'},
-      { title: 'Sports - Football', component: ListPage, icon: 'football', newsCatCode: 'football' },
-      { title: 'Football - <b class="colorRed">Live</b>', component: 'FootballLivePage', icon: 'football', newsCatCode: 'football' },
-      { title: 'Top Competitions', component: 'CompetitionPage', icon: 'trophy', newsCatCode: 'competition' },
-      { title: 'Sports - Cricket', component: ListPage, icon: 'globe', newsCatCode: 'cricket' },
-      { title: 'Cricket - <b class="colorRed">Live</b>', component: 'CricketLivePage', icon: 'tennisball', newsCatCode: 'football' },
-      { title: 'IPL Standings', component: 'CompetitiondisplayPage', icon: 'tennisball', newsCatCode: 'iplStandings' },
-      { title: 'Sports - Others', component: ListPage,icon:'globe' ,newsCatCode :'sports' },      
-      { title: 'Community', component: ListPage, icon: 'globe', newsCatCode:'politics'},
-      { title: 'Life Style', component: ListPage, icon: 'globe', newsCatCode:'lifestyle'},
-      { title: 'Food & Drink', component: ListPage, icon: 'pizza', newsCatCode: 'foodDrink' },
-      { title: 'Finance', component: ListPage, icon: 'cash', newsCatCode: 'finance' },
-      { title: 'Currency', component: 'CurrencyPage', icon: 'cash', newsCatCode: 'currency' },
-      { title: 'Technology', component: ListPage, icon: 'calculator', newsCatCode: 'technology' },
-      { title: 'Hollywood', component: ListPage, icon: 'globe', newsCatCode:'entertain'},
-      { title: 'Property', component: PropertyPage, icon: 'md-home', newsCatCode: '' }, 
-      { title: 'SHAADI - BrideGroom', component: MatrimonialPage, icon: 'md-male', newsCatCode: 0 }, 
-      { title: ' SHAADI - Bride', component: MatrimonialPage, icon: 'md-female', newsCatCode: 1 }, 
-      { title: 'Settings', component: SettingsPage, icon: 'md-cog', newsCatCode: '' }, 
-      //Here matrimonialGender is set as newsCatcode
-    ];
-
+    // this.pages = [
+    //   { title: 'Home', component: 'HomePage',icon:'home' ,newsCatCode :'home' },
+    //   { title: 'UK', component: "ListPage",icon:'globe' ,newsCatCode :'uk' },
+    //   { title: 'India', component: "ListPage",icon:'globe' ,newsCatCode :'india'},
+    //   { title: 'Pakistan', component: "ListPage",icon:'globe' ,newsCatCode :'pakistan' },
+    //   { title: 'Bangladesh', component: "ListPage",icon:'globe' ,newsCatCode :'bangladesh' },
+    //   { title: 'Sri Lanka', component: "ListPage",icon:'globe',newsCatCode :'srilanka'  },
+    //   { title: 'World', component: "ListPage",icon:'globe' ,newsCatCode :'world'},
+    //   { title: 'Special', component: "ListPage",icon:'globe' ,newsCatCode :'special'},
+    //   { title: 'Exclusive', component: "ListPage", icon: 'checkmark-circle', newsCatCode: 'featured' },
+    //   { title: 'Bollywood', component: "ListPage",icon:'globe'  ,newsCatCode :'bollywood'},
+    //   { title: 'Sports - Football', component: "ListPage", icon: 'football', newsCatCode: 'football' },
+    //   { title: 'Football - <b class="colorRed">Live</b>', component: 'FootballLivePage', icon: 'football', newsCatCode: 'football' },
+    //   { title: 'Top Competitions', component: 'CompetitionPage', icon: 'trophy', newsCatCode: 'competition' },
+    //   { title: 'Sports - Cricket', component: "ListPage", icon: 'globe', newsCatCode: 'cricket' },
+    //   { title: 'Cricket - <b class="colorRed">Live</b>', component: 'CricketLivePage', icon: 'tennisball', newsCatCode: 'football' },
+    //   { title: 'IPL Standings', component: 'CompetitiondisplayPage', icon: 'tennisball', newsCatCode: 'iplStandings' },
+    //   { title: 'Sports - Others', component: "ListPage",icon:'globe' ,newsCatCode :'sports' },      
+    //   { title: 'Community', component: "ListPage", icon: 'globe', newsCatCode:'community'},
+    //   { title: 'Life Style', component: "ListPage", icon: 'globe', newsCatCode:'lifestyle'},
+    //   { title: 'Food & Drink', component: "ListPage", icon: 'pizza', newsCatCode: 'foodDrink' },
+    //   { title: 'Finance', component: "ListPage", icon: 'cash', newsCatCode: 'finance' },
+    //  // { title: 'Currency', component: 'CurrencyPage', icon: 'cash', newsCatCode: 'currency' },
+    //   { title: 'Technology', component: "ListPage", icon: 'calculator', newsCatCode: 'technology' },
+    //   { title: 'Hollywood', component: "ListPage", icon: 'globe', newsCatCode:'entertain'},
+    //   { title: 'Property', component: PropertyPage, icon: 'md-home', newsCatCode: '' }, 
+    //   { title: 'SHAADI - BrideGroom', component: MatrimonialPage, icon: 'md-male', newsCatCode: 0 }, 
+    //   { title: ' SHAADI - Bride', component: MatrimonialPage, icon: 'md-female', newsCatCode: 1 }, 
+    //   { title: 'Settings', component: SettingsPage, icon: 'md-cog', newsCatCode: '' }, 
+    //   //Here matrimonialGender is set as newsCatcode
+    // ];
+    this.getMenu();
   }
 
   initializeApp() {
-    this.platform.ready().then(() => {
-
-     
+    this.platform.ready().then(() => {     
       this.statusBar.styleDefault();
       this.splashScreen.hide();
 
@@ -115,11 +106,23 @@ export class MyApp {
         // alert('NewsCategory code = ' + data.newsCategoryCode)
         this.pushNotificationRedirect(data.newsTitle,data.newsID,data.newsCategoryID,data.newsCategoryCode);
       }, err => console.log(err));
-      
     });
+  }
 
-    
+  getMenu() {
+    let data:Observable<any>;
+  //  let url = 'http://192.168.1.2/britAsiaNews/handlers/mobileMenu.ashx';
+    let url = this.domainName + 'handlers/mobileMenu.ashx';
 
+  
+    data = this.http.get(url);
+    data.subscribe(result =>{
+      console.log("Menu");
+      console.log(result);
+      this.pages = result;      
+    },error => {
+      //alert("Error");
+    });
   }
 
   exitFunction() {

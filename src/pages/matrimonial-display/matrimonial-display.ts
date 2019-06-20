@@ -1,8 +1,9 @@
 import { Component } from '@angular/core';
-import {  NavController, NavParams, LoadingController } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, LoadingController } from 'ionic-angular';
 import { Observable } from 'rxjs/Observable';
-import { HttpClient } from '@angular/common/http'; 
- 
+import { HttpClient } from '@angular/common/http';
+import { CommfuncProvider } from '../../providers/commfunc/commfunc';
+@IonicPage()
 @Component({
   selector: 'page-matrimonial-display',
   templateUrl: 'matrimonial-display.html',
@@ -13,15 +14,16 @@ export class MatrimonialDisplayPage {
   public domainName: string = "";
   public matrimonialData: any;
   constructor(
-          public navCtrl: NavController,
-          public navParams: NavParams,
-          public http: HttpClient,
-          public loadingCtrl: LoadingController
-        ) {
+    public navCtrl: NavController,
+    public navParams: NavParams,
+    public http: HttpClient,
+    public loadingCtrl: LoadingController,
+    public myCommFun: CommfuncProvider,
+  ) {
 
     this.intMatID = navParams.get('matrimonialID');
-    //this.domainName = "http://192.168.1.2/britAsiaNews/"
-    this.domainName = "https://www.britishasianews.com/"
+    this.domainName = this.myCommFun.domainName;
+
 
     this.dispMatrimonialByID(this.intMatID);
   }
@@ -40,7 +42,9 @@ export class MatrimonialDisplayPage {
       data.subscribe(result => {
         this.matrimonialData = result;
         loader.dismiss();
-      })
+      },error=>{
+          loader.dismiss();
+      });
     });
   }
 

@@ -4,7 +4,8 @@ import { Injectable } from '@angular/core';
 @Injectable()
 export class CommfuncProvider {
 
-  public cricketTokenID = 'be0e2fdd282afc3176c03d10cb601c09';
+  //public cricketTokenID = 'be0e2fdd282afc3176c03d10cb601c09'; // entity Sports ==>walty@britasianews.com
+  public cricketTokenID = 'bdcaf1ba8f314f1c683a237d5e6df4ab';  // entity Sports ==>walty@daijiworld.com 
   public tokenID: string = '4c941ae9ec8529b5f7c8c83484acb6db';
   
   public domainName: string = "https://www.britishasianews.com/";

@@ -75,6 +75,7 @@ export class FootballScoreCardPage {
     url = "https://rest.entitysport.com/soccer/matches/" + matchID + "/statsv2?token=" + this.myCommFun.tokenID;
     data = this.http.get(url);
        data.subscribe(data => {
+         console.log(data);
          this.matchStatsJson = data.response.items;
          this.isShow = true;
         //  console.log(data.response.items.match_info[0].teams.away["tname"]);

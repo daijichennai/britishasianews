@@ -1,10 +1,10 @@
 import { Component } from '@angular/core';
-import {  NavController, NavParams, LoadingController } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, LoadingController } from 'ionic-angular';
 import { Observable } from 'rxjs/Observable';
 import { HttpClient } from '@angular/common/http';
-import { MatrimonialDisplayPage } from "../matrimonial-display/matrimonial-display";
- 
+import { CommfuncProvider } from '../../providers/commfunc/commfunc';
 
+@IonicPage()
 @Component({
   selector: 'page-matrimonial',
   templateUrl: 'matrimonial.html',
@@ -16,21 +16,21 @@ export class MatrimonialPage {
   public listOfMatrimonial: any;
 
   constructor(public navCtrl: NavController,
-              public navParams: NavParams,
-              public http: HttpClient,
-              public loadingCtrl: LoadingController
-            ) {
+    public navParams: NavParams,
+    public http: HttpClient,
+    public loadingCtrl: LoadingController,
+    public myCommFun: CommfuncProvider,
+  ) {
 
-          //this.domainName = "http://192.168.1.2/britAsiaNews/"
-    this.domainName = "https://www.britishasianews.com/"
-          this.gender = navParams.get('newsCatCode');
-          this.getMatrimonialData(this.gender);
+    this.domainName = this.myCommFun.domainName;
+    this.gender = navParams.get('newsCatCode');
+    this.getMatrimonialData(this.gender);
   }
 
-  getMatrimonialData(gender:boolean) {
+  getMatrimonialData(gender: boolean) {
     let data: Observable<any>;
     //alert(lastNewsID);
-    let url = this.domainName + "handlers/matrimonial.ashx?mode=list&matrimonialGender="+gender;
+    let url = this.domainName + "handlers/matrimonial.ashx?mode=list&matrimonialGender=" + gender;
 
     let loader = this.loadingCtrl.create({
       content: 'Please wait...'
@@ -47,9 +47,9 @@ export class MatrimonialPage {
   }
 
   getMatrimonialID(intMatID: number) {
-    this.navCtrl.push(MatrimonialDisplayPage, {
-      matrimonialID : intMatID
+    this.navCtrl.push("MatrimonialDisplayPage", {
+      matrimonialID: intMatID
     });
   }
-  
+
 }

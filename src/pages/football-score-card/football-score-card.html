@@ -1,10 +1,10 @@
 <ion-header>
     <ion-navbar color="primary">
-    <ion-buttons end>
-        <button ion-button icon-only color="royal" (click)="toggleMenu();">
+        <ion-buttons end>
+            <button ion-button icon-only color="royal" (click)="toggleMenu();">
             <ion-icon name="menu"></ion-icon>
         </button>
-    </ion-buttons>
+        </ion-buttons>
         <ion-title>SCORECARD</ion-title>
     </ion-navbar>
 </ion-header>
@@ -40,7 +40,7 @@
         </div>
     </div>
 
-    <div *ngIf="isShow" >
+    <div *ngIf="isShow">
         <ion-segment [(ngModel)]="tabs">
             <ion-segment-button value="lineUps">
                 Line-Ups
@@ -52,19 +52,19 @@
                 Match Stats
             </ion-segment-button>
         </ion-segment>
-    
+
         <div [ngSwitch]="tabs">
             <ion-list *ngSwitchCase="'lineUps'">
                 <br>
                 <ion-grid>
                     <ion-row>
                         <ion-col col-6>
-                            <table >
+                            <table>
                                 <tr>
                                     <td text-center colspan="3"><b>Home</b></td>
                                 </tr>
                                 <tr *ngFor="let hl of homeLineUps">
-                                    <td style="padding-bottom: 5px;" >
+                                    <td style="padding-bottom: 5px;">
                                         <div class="block">
                                             <div class="circle">
                                                 <p>{{hl.shirtnumber}}</p>
@@ -78,14 +78,14 @@
                                 </tr>
                             </table>
                         </ion-col>
-    
+
                         <ion-col col-6>
                             <table>
                                 <tr>
                                     <td text-center colspan="3"><b>Away</b></td>
                                 </tr>
                                 <tr *ngFor="let al of awayLineUps">
-                                    <td style="padding-bottom: 5px;" >
+                                    <td style="padding-bottom: 5px;">
                                         <div class="block">
                                             <div class="circle">
                                                 <p>{{al.shirtnumber}}</p>
@@ -97,11 +97,11 @@
                                         {{al.pname}}
                                     </td>
                                 </tr>
-                            </table>    
-                        </ion-col>    
+                            </table>
+                        </ion-col>
                     </ion-row>
                 </ion-grid>
-    
+
                 <ion-grid>
                     <ion-row>
                         <ion-col col-6>
@@ -110,7 +110,7 @@
                                     <td text-center colspan="3"><b>Substitutes</b></td>
                                 </tr>
                                 <tr *ngFor="let hs of homeSubstitutes">
-                                    <td style="padding-bottom: 5px;" >
+                                    <td style="padding-bottom: 5px;">
                                         <div class="block">
                                             <div class="circle">
                                                 <p>{{hs.shirtnumber}}</p>
@@ -130,7 +130,7 @@
                                     <td text-center colspan="3"><b>Substitutes</b></td>
                                 </tr>
                                 <tr *ngFor="let awaySub of awaySubstitutes">
-                                    <td style="padding-bottom: 5px;" >
+                                    <td style="padding-bottom: 5px;">
                                         <div class="block">
                                             <div class="circle">
                                                 <p>{{awaySub.shirtnumber}}</p>
@@ -142,7 +142,7 @@
                                         {{awaySub.pname}}
                                     </td>
                                 </tr>
-                            </table>    
+                            </table>
                         </ion-col>
                     </ion-row>
                     <ion-row>
@@ -151,9 +151,9 @@
                         </ion-col>
                     </ion-row>
                 </ion-grid>
-    
+
             </ion-list>
-    
+
             <ion-list *ngSwitchCase="'commentary'">
                 <br>
                 <ion-grid>
@@ -171,104 +171,90 @@
                     </ion-row>
                 </ion-grid>
             </ion-list>
-    
+
             <ion-list *ngSwitchCase="'matchStats'">
                 <br>
                 <div>
                     <div class="progress-group" padding>
                         <h4 text-center>POSSESSION</h4>
                         <div class="progress sm">
-                            <div class="progress-bar progress-bar-aqua"
-                                [ngStyle]="{'width.%': widthForHomeTeam(matchStatsJson.statistics[0].home,matchStatsJson.statistics[0].away)}">
+                            <div class="progress-bar progress-bar-aqua" [ngStyle]="{'width.%': widthForHomeTeam(matchStatsJson.statistics[0].home,matchStatsJson.statistics[0].away)}">
                                 {{this.matchStatsJson.statistics[0].home}}</div>
-                            <div class="progress-bar progress-bar-danger"
-                                [ngStyle]="{'width.%': widthForAwayTeam(matchStatsJson.statistics[0].home,matchStatsJson.statistics[0].away)}">
+                            <div class="progress-bar progress-bar-danger" [ngStyle]="{'width.%': widthForAwayTeam(matchStatsJson.statistics[0].home,matchStatsJson.statistics[0].away)}">
                                 {{this.matchStatsJson.statistics[0].away}}</div>
                         </div>
                         <br>
                     </div>
-    
+
                     <div class="progress-group" padding>
                         <h4 text-center>SUBSTITUTIONS</h4>
                         <div class="progress sm">
-                            <div class="progress-bar progress-bar-aqua"
-                                [ngStyle]="{'width.%': widthForHomeTeam(matchStatsJson.statistics[1].home,matchStatsJson.statistics[1].away)}">
+                            <div class="progress-bar progress-bar-aqua" [ngStyle]="{'width.%': widthForHomeTeam(matchStatsJson.statistics[1].home,matchStatsJson.statistics[1].away)}">
                                 {{this.matchStatsJson.statistics[1].home}}</div>
-                            <div class="progress-bar progress-bar-danger"
-                                [ngStyle]="{'width.%': widthForAwayTeam(matchStatsJson.statistics[1].home,matchStatsJson.statistics[1].away)}">
+                            <div class="progress-bar progress-bar-danger" [ngStyle]="{'width.%': widthForAwayTeam(matchStatsJson.statistics[1].home,matchStatsJson.statistics[1].away)}">
                                 {{this.matchStatsJson.statistics[1].away}}</div>
                         </div>
                         <br>
                     </div>
-    
+
                     <div class="progress-group" padding>
                         <h4 text-center>SHOTS ON TARGET</h4>
                         <div class="progress sm">
-                            <div class="progress-bar progress-bar-aqua"
-                                [ngStyle]="{'width.%': widthForHomeTeam(matchStatsJson.statistics['shotsontarget'].home,matchStatsJson.statistics['shotsontarget'].away)}">
-                                {{this.matchStatsJson.statistics["shotsontarget"].home}}</div>
-                            <div class="progress-bar progress-bar-danger"
-                                [ngStyle]="{'width.%': widthForAwayTeam(matchStatsJson.statistics['shotsontarget'].home,matchStatsJson.statistics['shotsontarget'].away)}">
-                                {{this.matchStatsJson.statistics["shotsontarget"].away}}</div>
+                            <div class="progress-bar progress-bar-aqua" [ngStyle]="{'width.%': widthForHomeTeam(matchStatsJson.statistics[6].home,matchStatsJson.statistics[6].away)}">
+                                {{this.matchStatsJson.statistics[6].home}}</div>
+                            <div class="progress-bar progress-bar-danger" [ngStyle]="{'width.%': widthForAwayTeam(matchStatsJson.statistics[6].home,matchStatsJson.statistics[6].away)}">
+                                {{this.matchStatsJson.statistics[6].away}}</div>
                         </div>
                         <br>
                     </div>
-    
+
                     <div class="progress-group" padding>
                         <h4 text-center>CORNERS</h4>
                         <div class="progress sm">
-                            <div class="progress-bar progress-bar-aqua"
-                                [ngStyle]="{'width.%': widthForHomeTeam(matchStatsJson.statistics[5].home,matchStatsJson.statistics[5].away)}">
+                            <div class="progress-bar progress-bar-aqua" [ngStyle]="{'width.%': widthForHomeTeam(matchStatsJson.statistics[5].home,matchStatsJson.statistics[5].away)}">
                                 {{this.matchStatsJson.statistics[5].home}}</div>
-                            <div class="progress-bar progress-bar-danger"
-                                [ngStyle]="{'width.%': widthForAwayTeam(matchStatsJson.statistics[5].home,matchStatsJson.statistics[5].away)}">
+                            <div class="progress-bar progress-bar-danger" [ngStyle]="{'width.%': widthForAwayTeam(matchStatsJson.statistics[5].home,matchStatsJson.statistics[5].away)}">
                                 {{this.matchStatsJson.statistics[5].away}}</div>
                         </div>
                         <br>
                     </div>
-    
+
                     <div class="progress-group" padding>
                         <h4 text-center>FOULS</h4>
                         <div class="progress sm">
-                            <div class="progress-bar progress-bar-aqua"
-                                [ngStyle]="{'width.%': widthForHomeTeam(matchStatsJson.statistics['fouls'].home,matchStatsJson.statistics['fouls'].away)}">
-                                {{this.matchStatsJson.statistics["fouls"].home}}</div>
-                            <div class="progress-bar progress-bar-danger"
-                                [ngStyle]="{'width.%': widthForAwayTeam(matchStatsJson.statistics['fouls'].home,matchStatsJson.statistics['fouls'].away)}">
-                                {{this.matchStatsJson.statistics["fouls"].away}}</div>
+                            <div class="progress-bar progress-bar-aqua" [ngStyle]="{'width.%': widthForHomeTeam(matchStatsJson.statistics[10].home,matchStatsJson.statistics[10].away)}">
+                                {{this.matchStatsJson.statistics[10].home}}</div>
+                            <div class="progress-bar progress-bar-danger" [ngStyle]="{'width.%': widthForAwayTeam(matchStatsJson.statistics[10].home,matchStatsJson.statistics[10].away)}">
+                                {{this.matchStatsJson.statistics[10].away}}</div>
                         </div>
                         <br>
                     </div>
-    
+
                     <div class="progress-group" padding>
                         <h4 text-center>YELLOW CARDS</h4>
                         <div class="progress sm">
-                            <div class="progress-bar progress-bar-aqua"
-                                [ngStyle]="{'width.%': widthForHomeTeam(matchStatsJson.statistics[0].home,matchStatsJson.statistics[0].away)}">
+                            <div class="progress-bar progress-bar-aqua" [ngStyle]="{'width.%': widthForHomeTeam(matchStatsJson.statistics[0].home,matchStatsJson.statistics[0].away)}">
                                 {{this.matchStatsJson.statistics[0].home}}</div>
-                            <div class="progress-bar progress-bar-danger"
-                                [ngStyle]="{'width.%': widthForAwayTeam(matchStatsJson.statistics[0].home,matchStatsJson.statistics[0].away)}">
+                            <div class="progress-bar progress-bar-danger" [ngStyle]="{'width.%': widthForAwayTeam(matchStatsJson.statistics[0].home,matchStatsJson.statistics[0].away)}">
                                 {{this.matchStatsJson.statistics[0].away}}</div>
                         </div>
                         <br>
                     </div>
-    
+
                     <div class="progress-group" padding>
                         <h4 text-center>SAVES</h4>
                         <div class="progress sm">
-                            <div class="progress-bar progress-bar-aqua"
-                                [ngStyle]="{'width.%': widthForHomeTeam(matchStatsJson.statistics['saves'].home,matchStatsJson.statistics['saves'].away)}">
-    
-                                {{this.matchStatsJson.statistics["saves"].home}}</div>
-                            <div class="progress-bar progress-bar-danger"
-                                [ngStyle]="{'width.%': widthForAwayTeam(matchStatsJson.statistics['saves'].home,matchStatsJson.statistics['saves'].away)}">
-                                {{this.matchStatsJson.statistics["saves"].away}}</div>
+                            <div class="progress-bar progress-bar-aqua" [ngStyle]="{'width.%': widthForHomeTeam(matchStatsJson.statistics[9].home,matchStatsJson.statistics[9].away)}">
+
+                                {{this.matchStatsJson.statistics[9].home}}</div>
+                            <div class="progress-bar progress-bar-danger" [ngStyle]="{'width.%': widthForAwayTeam(matchStatsJson.statistics[9].home,matchStatsJson.statistics[9].away)}">
+                                {{this.matchStatsJson.statistics[9].away}}</div>
                         </div>
                         <br>
                     </div>
                 </div>
             </ion-list>
-    
+
         </div>
     </div>
 </ion-content>
