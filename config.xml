@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='utf-8'?>
-<widget android-versionCode="15" id="com.britasianews.android" version="1.0.0" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
+<widget android-versionCode="16" id="com.britasianews.android" version="1.0.0" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
     <name>British Asia News</name>
     <description>News Portal</description>
     <author email="karthik@daijiworld.com" href="http://daijitech.daijiworld.com">Daijiworld Technologies Team</author>
@@ -14,7 +14,7 @@
     <preference name="orientation" value="portrait" />
     <preference name="DisallowOverscroll" value="true" />
     <preference name="StatusBarOverlaysWebView" value="true" />
-    <preference name="StatusBarBackgroundColor" value="#E91E63" />
+    <preference name="StatusBarBackgroundColor" value="#D5192D" />
     <preference name="ScrollEnabled" value="false" />
     <preference name="android-minSdkVersion" value="26" />
     <preference name="BackupWebStorage" value="none" />
@@ -52,6 +52,4 @@
     <plugin name="cordova-plugin-statusbar" spec="^2.4.2" />
     <plugin name="cordova-plugin-network-information" spec="^2.0.1" />
     <plugin name="cordova-plugin-x-socialsharing" spec="^5.4.1" />
-    <plugin name="cordova-plugin-firebase" spec="https://github.com/dpa99c/cordova-plugin-firebase\#GH-1057-April-05-android-build-issue" />
-    <engine name="android" spec="7.1.4" />
 </widget>
